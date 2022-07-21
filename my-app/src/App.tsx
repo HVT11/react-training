@@ -1,4 +1,5 @@
 import Calculator from "./component/Calculator/Calculator";
+import SignUpDialog from "./component/Dialog/WelcomeDialog";
 import Welcome from "./component/Welcome";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <Welcome name="Tri Huynh"/>
       <Calculator />
+      <SignUpDialog />
     </div>
   );
 }
