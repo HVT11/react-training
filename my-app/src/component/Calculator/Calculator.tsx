@@ -2,6 +2,11 @@ import React from "react";
 import TemperatureInput from "./TemperatureInput";
 import {toCelsius, toFahrenheit, tryConvert} from "./convert"
 
+interface Temperature {
+    temperature: string,
+    scale: 'c' | 'f'
+}
+
 function BoilingVerdict(props: {celsius: number}) {
     if (props.celsius >= 100) {
       return <p>The water would boil.</p>;
@@ -10,10 +15,7 @@ function BoilingVerdict(props: {celsius: number}) {
 }
 
 class Calculator extends React.Component {
-    state: Readonly<{
-        temperature: string,
-        scale: 'c' | 'f'
-    }>;
+    state: Readonly<Temperature>;
     constructor(props: {}) {
         super(props)
         this.state = {

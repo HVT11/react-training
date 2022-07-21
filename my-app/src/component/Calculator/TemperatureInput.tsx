@@ -5,9 +5,15 @@ const scaleNames = {
   f: 'Fahrenheit'
 }
 
+interface Props {
+  scale: 'c' | 'f', 
+  temperature: string, 
+  onTemperatureChange: (temperature: string) => void
+}
+
 class TemperatureInput extends React.Component {
-    props: {scale: 'c' | 'f', temperature: string, onTemperatureChange: (temperature: string) => void}
-    constructor(props: {scale: 'c' | 'f', temperature: string, onTemperatureChange: (temperature: string) => void}) {
+    props: Props
+    constructor(props: Props) {
       super(props);
       this.props = props
     }
