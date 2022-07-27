@@ -1,0 +1,24 @@
+@import '../../../assets/styles/abstracts/variables';
+
+.sidebar__item {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
+    &__label {
+        margin: 10px;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+    &--active {
+        color: $primary-color;
+        background-color: #00000033;
+        border-left: 3px solid $primary-color;
+    }
+    &__icon {
+        padding-left: 2px;
+        width: 20px;
+        height: 20px;
+    }
+}
