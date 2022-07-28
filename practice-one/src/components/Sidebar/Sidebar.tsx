@@ -2,7 +2,7 @@ import './sidebar.scss';
 
 import React from 'react';
 
-import Button, { ButtonProps } from '../Button/Button';
+import Button, { ButtonProps } from '../Button/NormalButton/Button';
 import SidebarList, { ISidebarListProps } from './ListItem/SidebarList';
 
 interface ISidebarProps {

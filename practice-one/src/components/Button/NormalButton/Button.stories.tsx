@@ -2,6 +2,11 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import Button from './Button';
 
+export default {
+  title: 'Button/NormalButton',
+  component: Button,
+} as ComponentMeta<typeof Button>;
+
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 const AddButton = Template.bind({});
@@ -32,10 +37,5 @@ SaveButton.args = {
     alert('Save Button');
   },
 };
-
-export default {
-  title: 'Button',
-  component: Button,
-} as ComponentMeta<typeof Button>;
 
 export { AddButton, DeleteButton, SaveButton };
