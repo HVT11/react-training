@@ -1,0 +1,17 @@
+@import '../../../assets/styles/abstracts/mixins';
+@import '../../../assets/styles/abstracts/variables';
+
+.input-box {
+	@include flex-center-vert;
+    justify-content: space-between;
+    margin: 20px;
+    &__input {
+        width: 70%;
+        font-size: 16px;
+        padding: 6px;
+        border: 1px solid $border-color;
+        &:focus {
+            outline: 2px solid $primary-color;
+        }
+    }
+}
