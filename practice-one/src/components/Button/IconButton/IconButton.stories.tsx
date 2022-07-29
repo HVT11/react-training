@@ -1,0 +1,36 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+
+import IconButton from './IconButton';
+
+export default {
+  title: 'Button/IconButton',
+  component: IconButton,
+} as ComponentMeta<typeof IconButton>;
+
+const Template: ComponentStory<typeof IconButton> = (args) => <IconButton {...args} />;
+
+const Search = Template.bind({});
+Search.args = {
+  icon: ['fas', 'magnifying-glass'],
+  onClick: () => alert('Button Search'),
+};
+
+const Edit = Template.bind({});
+Edit.args = {
+  icon: ['fas', 'pen'],
+  onClick: () => alert('Button Edit'),
+};
+
+const Cancel = Template.bind({});
+Cancel.args = {
+  icon: ['fas', 'xmark'],
+  onClick: () => alert('Button cancel'),
+};
+
+const Back = Template.bind({});
+Back.args = {
+  icon: ['fas', 'arrow-left'],
+  onClick: () => alert('Button back'),
+};
+
+export { Back, Cancel, Edit, Search };
