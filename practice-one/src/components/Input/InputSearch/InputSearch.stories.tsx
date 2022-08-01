@@ -7,7 +7,7 @@ export default {
   component: InputSearch,
 } as ComponentMeta<typeof InputSearch>;
 
-const Template: ComponentStory<typeof InputSearch> = (args) => <InputSearch {...args} />;
+const Template: ComponentStory<typeof InputSearch> = () => <InputSearch />;
 
 const Defaut = Template.bind({});
 

@@ -6,7 +6,7 @@ type State = {
   text: string;
 };
 
-class InputSearch extends React.Component<State> {
+class InputSearch extends React.Component<{}, State> {
   state = { text: '' };
 
   handleChangeText = (event: React.FormEvent<HTMLInputElement>) => {
@@ -17,9 +17,10 @@ class InputSearch extends React.Component<State> {
     return (
       <input
         type="search"
-        placeholder="Search"
+        placeholder="Search..."
         className="input-search"
         value={this.state.text}
+        onChange={this.handleChangeText}
       />
     );
   }
