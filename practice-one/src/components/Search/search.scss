@@ -1,0 +1,6 @@
+@import '../../assets/styles/abstracts/mixins';
+
+.search {
+    @include flex-center-vert;
+    justify-content: space-between;
+}
