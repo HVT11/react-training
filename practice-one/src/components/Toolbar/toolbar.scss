@@ -1,0 +1,12 @@
+@import '../../assets/styles/abstracts/mixins';
+@import '../../assets/styles/abstracts/variables';
+
+.toolbar {
+    width: 100%;
+    background-color: $white-color;
+    padding-left: 10px;
+    &__title{
+        @include flex-center-vert;
+        justify-content: space-between;
+    }
+}
