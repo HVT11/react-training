@@ -6,7 +6,7 @@ import IconButton from '../Button/IconButton/IconButton';
 import InputSearch from '../Input/InputSearch/InputSearch';
 
 interface ISearch {
-  onClick: () => void
+  onClick: () => void;
 }
 
 class Search extends React.Component<ISearch> {
