@@ -10,11 +10,16 @@
         cursor: pointer;
         opacity: 0.7;
     }
-    &--medium {
+    &--small {
         width: 116px;
         height: 32px;
         font-size: 16px;
         margin: 0 4px;
+    }
+    &--medium {
+        width: 160px;
+        height: 32px;
+        font-size: 16px;
     }
     &--large {
         margin: 10px 10%;

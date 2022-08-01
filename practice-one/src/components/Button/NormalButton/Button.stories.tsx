@@ -22,7 +22,7 @@ AddButton.args = {
 const DeleteButton = Template.bind({});
 DeleteButton.args = {
   label: 'Delete',
-  size: 'medium',
+  size: 'small',
   onClick: () => {
     alert('Delete Button');
   },
@@ -32,10 +32,20 @@ const SaveButton = Template.bind({});
 SaveButton.args = {
   primary: true,
   label: 'Save',
-  size: 'medium',
+  size: 'small',
   onClick: () => {
     alert('Save Button');
   },
 };
 
-export { AddButton, DeleteButton, SaveButton };
+const HasIcon = Template.bind({});
+HasIcon.args = {
+  label: 'Name button',
+  size: 'medium',
+  onClick: () => {
+    alert('Save Button');
+  },
+  icon: true,
+};
+
+export { AddButton, DeleteButton, HasIcon, SaveButton };
