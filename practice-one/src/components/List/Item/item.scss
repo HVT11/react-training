@@ -1,0 +1,11 @@
+@import '../../../assets/styles/abstracts/variables';
+
+.item {
+    text-decoration: none;
+    padding-left: 27px;
+    &--highlight {
+        color: $primary-color;
+        background-color: $silver-color;
+        border-radius: 4px;
+    }
+}

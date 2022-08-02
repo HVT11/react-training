@@ -1,0 +1,16 @@
+@import '../../assets/styles/utilities/flex';
+
+.list {
+    list-style: none;
+    padding: 10px;
+    &__header {
+        margin-bottom: 6px;
+    }
+    &__header__label {
+        margin: 0 0 0 10px;
+        display: block;
+        font-weight: 700;
+    }
+}
+
+
