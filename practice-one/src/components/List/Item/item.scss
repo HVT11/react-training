@@ -1,11 +1,15 @@
 @import '../../../assets/styles/abstracts/variables';
 
 .item {
+    padding: 2px 0 2px 27px;
     text-decoration: none;
-    padding-left: 27px;
     &--highlight {
+        text-decoration: underline;
         color: $primary-color;
         background-color: $silver-color;
         border-radius: 4px;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

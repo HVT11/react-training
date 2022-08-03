@@ -9,9 +9,9 @@ import Item, { IItemProps } from './Item/Item';
 
 library.add(fas);
 
-interface IListProps {
+export interface IListProps {
   headerList: string;
-  count: number;
+  count?: number;
   icon:
     | ['fas', 'envelope']
     | ['fas', 'user-check']
