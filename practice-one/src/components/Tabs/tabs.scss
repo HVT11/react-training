@@ -1,0 +1,22 @@
+@import '../../assets/styles/base/typography';
+@import '../../assets/styles/abstracts/variables';
+
+.tab {
+    width: 140px;
+    height: 42px;
+    font-family: $font-roboto;
+    color: $primary-color;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: transparent;
+    &--active {
+        border-bottom: 2px $primary-color solid;
+    }
+}
+
+.tabs {
+    &__options{
+        
+    }
+}
