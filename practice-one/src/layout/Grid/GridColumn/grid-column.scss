@@ -1,0 +1,22 @@
+@import '../../../assets/styles/abstracts/variables';
+
+.grid__column {
+    height: 100%;
+    border: 1px solid $border-color;
+    &--xs {
+        width: 11%;
+    }
+    &--s {
+        width: 28.999%;
+        margin-left: 10px;
+    }
+    &--m {
+        width: 70%;
+    }
+    &--l {
+        width: 89%;
+    }
+    &--xl {
+        width: 100%;
+    }
+}
