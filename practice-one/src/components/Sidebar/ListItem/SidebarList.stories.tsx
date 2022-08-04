@@ -10,12 +10,6 @@ export default {
 const Template: ComponentStory<typeof SidebarList> = (args) => <SidebarList {...args} />;
 
 const Default = Template.bind({});
-Default.args = {
-  list: [
-    { id: '1', label: 'Users', icon: ['fas', 'user-group'], active: true },
-    { id: '2', label: 'Roles', icon: ['fas', 'user-check'] },
-    { id: '3', label: 'Rules', icon: ['fas', 'clipboard-check'] },
-  ],
-};
+Default.args = {};
 
 export { Default };

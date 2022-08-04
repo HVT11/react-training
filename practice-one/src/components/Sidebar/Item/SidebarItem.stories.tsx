@@ -11,7 +11,6 @@ const Template: ComponentStory<typeof SidebarItem> = (args) => <SidebarItem {...
 
 const Default = Template.bind({});
 Default.args = {
-  active: true,
   label: 'SidebarItem',
   icon: ['fas', 'user-group'],
 };

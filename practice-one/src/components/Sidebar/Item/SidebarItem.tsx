@@ -7,9 +7,9 @@ import React from 'react';
 
 library.add(fas);
 
-export interface ISidebarItemProps {
+interface ISidebarItemProps {
   id?: string;
-  active?: boolean;
+  index?: string;
   label: string;
   icon: ['fas', 'user-group'] | ['fas', 'user-check'] | ['fas', 'clipboard-check'];
   onClick?: () => void;
@@ -17,7 +17,7 @@ export interface ISidebarItemProps {
 
 class SidebarItem extends React.Component<ISidebarItemProps> {
   render() {
-    const mode = this.props.active ? 'sidebar__item--active' : '';
+    const mode = this.props.index === this.props.id ? 'sidebar__item--active' : '';
     return (
       <div>
         <li className={['sidebar__item', mode].join(' ')} onClick={this.props.onClick}>

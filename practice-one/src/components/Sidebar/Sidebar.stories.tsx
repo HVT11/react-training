@@ -10,19 +10,6 @@ export default {
 const Template: ComponentStory<typeof Sidebar> = (args) => <Sidebar {...args} />;
 
 const Default = Template.bind({});
-Default.args = {
-  buttonProp: {
-    primary: true,
-    label: '+ New',
-    size: 'large',
-  },
-  sidebarListProp: {
-    list: [
-      { id: '1', label: 'Users', icon: ['fas', 'user-group'], active: true },
-      { id: '2', label: 'Roles', icon: ['fas', 'user-check'] },
-      { id: '3', label: 'Rules', icon: ['fas', 'clipboard-check'] },
-    ],
-  },
-};
+Default.args = {};
 
 export { Default };
