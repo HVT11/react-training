@@ -6,17 +6,25 @@ import Avatar from '../../Avatar/Avatar';
 import Label from '../../Label/Label';
 
 export interface IUser {
-  id: number;
+  id?: string;
   url?: string;
   username: string;
   status: boolean;
   email?: string;
+  itemActive?: string;
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (event: React.MouseEvent<HTMLTableRowElement>) => void;
 }
 
 class TableUserRow extends React.Component<IUser> {
   render() {
+    const mode = this.props.itemActive === this.props.id ? 'table__row--active' : '';
     return (
-      <tr className="table__row">
+      <tr
+        className={['table__row', mode].join(' ')}
+        id={this.props.id}
+        onClick={this.props.onClick}
+      >
         <td className="table__col">
           <Avatar
             url={this.props.url}

@@ -9,6 +9,9 @@ import TableUserRow, { IUser } from './TableUserRow';
 interface ITableUserProps {
   list: IUser[];
   isLoading: boolean;
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (event: React.MouseEvent<HTMLTableRowElement>) => void;
+  itemActive: string;
 }
 
 class TableUser extends React.Component<ITableUserProps> {
@@ -21,7 +24,14 @@ class TableUser extends React.Component<ITableUserProps> {
       if (this.props.list.length === 0) {
         listRow = <TableRowEmpty />;
       } else {
-        listRow = this.props.list.map((user) => <TableUserRow key={user.id} {...user} />);
+        listRow = this.props.list.map((user) => (
+          <TableUserRow
+            key={user.id}
+            onClick={this.props.onClick}
+            itemActive={this.props.itemActive}
+            {...user}
+          />
+        ));
       }
     }
 
