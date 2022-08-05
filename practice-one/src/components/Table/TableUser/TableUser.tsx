@@ -4,10 +4,10 @@ import React from 'react';
 
 import TableRowEmpty from '../TableRow/TableRowEmpty';
 import TableRowLoading from '../TableRow/TableRowLoading';
-import TableUserRow, { IUser } from './TableUserRow';
+import TableUserRow, { IUserRowProps } from './TableUserRow';
 
 interface ITableUserProps {
-  list: IUser[];
+  list: IUserRowProps[];
   isLoading: boolean;
   // eslint-disable-next-line no-unused-vars
   onClick?: (event: React.MouseEvent<HTMLTableRowElement>) => void;

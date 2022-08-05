@@ -5,7 +5,7 @@ import React from 'react';
 import Avatar from '../../Avatar/Avatar';
 import Label from '../../Label/Label';
 
-export interface IUser {
+export interface IUserRowProps {
   id?: string;
   url?: string;
   username: string;
@@ -16,7 +16,7 @@ export interface IUser {
   onClick?: (event: React.MouseEvent<HTMLTableRowElement>) => void;
 }
 
-class TableUserRow extends React.Component<IUser> {
+class TableUserRow extends React.Component<IUserRowProps> {
   render() {
     const mode = this.props.itemActive === this.props.id ? 'table__row--active' : '';
     return (
