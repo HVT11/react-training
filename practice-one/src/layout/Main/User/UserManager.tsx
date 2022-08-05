@@ -1,25 +1,16 @@
 import React from 'react';
 
 import TableUser from '../../../components/Table/TableUser/TableUser';
-import { IUser } from '../../../components/Table/TableUser/TableUserRow';
+import { IUserRowProps } from '../../../components/Table/TableUser/TableUserRow';
 import Toolbar from '../../../components/Toolbar/Toolbar';
+import { dataFormat } from '../../../utils/format/dataFormat';
+import { IUser } from '../../../utils/interface/IUser';
+import * as server from '../../../utils/servers/users';
 import GridColumn from '../../Grid/GridColumn/GridColumn';
 import GridRow from '../../Grid/GridRow/GridRow';
 
-const mockData: IUser[] = [
-  {
-    id: '1',
-    username: 'Name',
-    status: false,
-    email: 'email',
-  },
-  {
-    id: '2',
-    username: 'Name',
-    status: false,
-    email: 'email',
-  },
-];
+const users: IUser[] | undefined = await server.fetchUsers();
+const data: IUserRowProps[] = users ? dataFormat(users) : [];
 
 class UserManager extends React.Component {
   state = { itemId: '' };
@@ -34,7 +25,7 @@ class UserManager extends React.Component {
         <GridColumn size={size}>
           <Toolbar mode="search" name="Users" />
           <TableUser
-            list={mockData}
+            list={data}
             isLoading={false}
             onClick={this.handleClick}
             itemActive={this.state.itemId}
