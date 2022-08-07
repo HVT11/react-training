@@ -18,6 +18,7 @@ export interface IUserRowProps {
 
 class TableUserRow extends React.Component<IUserRowProps> {
   render() {
+    console.log(this.props.itemActive === this.props.id);
     const mode = this.props.itemActive === this.props.id ? 'table__row--active' : '';
     return (
       <tr

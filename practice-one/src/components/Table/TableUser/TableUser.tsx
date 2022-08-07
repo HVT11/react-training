@@ -1,5 +1,3 @@
-import '../table.scss';
-
 import React from 'react';
 
 import TableRowEmpty from '../TableRow/TableRowEmpty';

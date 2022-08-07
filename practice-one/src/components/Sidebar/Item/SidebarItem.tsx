@@ -12,7 +12,8 @@ interface ISidebarItemProps {
   index?: string;
   label: string;
   icon: ['fas', 'user-group'] | ['fas', 'user-check'] | ['fas', 'clipboard-check'];
-  onClick?: () => void;
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
 }
 
 class SidebarItem extends React.Component<ISidebarItemProps> {
@@ -20,7 +21,11 @@ class SidebarItem extends React.Component<ISidebarItemProps> {
     const mode = this.props.index === this.props.id ? 'sidebar__item--active' : '';
     return (
       <div>
-        <li className={['sidebar__item', mode].join(' ')} onClick={this.props.onClick}>
+        <li
+          id={this.props.id}
+          className={['sidebar__item', mode].join(' ')}
+          onClick={this.props.onClick}
+        >
           <FontAwesomeIcon icon={this.props.icon} className="sidebar__item__icon" />
           <p className="sidebar__item__label">{this.props.label}</p>
         </li>

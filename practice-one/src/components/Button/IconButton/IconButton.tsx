@@ -19,7 +19,7 @@ interface IIconButtonProps {
 class IconButton extends React.Component<IIconButtonProps> {
   render() {
     return (
-      <div className="box-icon" id="btn-cancel-search" onClick={this.props.onClick}>
+      <div className="box-icon" onClick={this.props.onClick}>
         <FontAwesomeIcon icon={this.props.icon} className="icon" />
       </div>
     );
