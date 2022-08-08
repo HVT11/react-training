@@ -3,40 +3,25 @@ import './input-text.scss';
 import React from 'react';
 
 interface IInputProps {
-  name: string;
+  label: string;
+  name?: string;
   value?: string;
   type: 'text' | 'file';
+  // eslint-disable-next-line no-unused-vars
+  onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
-type State = {
-  value?: string;
-};
-
-class Input extends React.Component<IInputProps, State> {
-  state = { value: this.props.value ? this.props.value : '' };
-
-  handleChangeText = (event: React.FormEvent<HTMLInputElement>) => {
-    this.setState({ value: event.currentTarget.value });
-  };
-
-  static getDerivedStateFromProps(props: IInputProps, state: State) {
-    if (props.value !== state.value) {
-      return {
-        value: props.value,
-      };
-    } else return null;
-  }
-
+class Input extends React.Component<IInputProps> {
   render() {
     return (
       <div className="input-box">
-        <p className="input-box__label">{this.props.name}:</p>
+        <p className="input-box__label">{this.props.label}:</p>
         <input
           type={this.props.type}
           className="input-box__input"
-          id={this.props.name}
-          onChange={this.handleChangeText}
-          value={this.state.value}
+          name={this.props.name}
+          onChange={this.props.onHandleChange}
+          value={this.props.value}
         />
       </div>
     );
