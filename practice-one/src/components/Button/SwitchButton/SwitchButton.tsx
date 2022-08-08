@@ -13,6 +13,14 @@ type State = {
 class SwitchButton extends React.Component<ISwitchButtonProps, State> {
   state = { checked: this.props.checked };
 
+  static getDerivedStateFromProps(props: ISwitchButtonProps, state: State) {
+    if (props.checked !== state.checked) {
+      return {
+        checked: props.checked,
+      };
+    } else return null;
+  }
+
   handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ checked: event.target.checked });
   };
