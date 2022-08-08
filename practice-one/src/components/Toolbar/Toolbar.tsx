@@ -10,7 +10,9 @@ import Search from '../Search/Search';
 interface IToolbarProps {
   mode?: 'search' | 'edit';
   hasStatus?: boolean;
+  statusActive?: boolean;
   name: string;
+  onClick?: () => void;
 }
 
 type State = {
@@ -36,7 +38,7 @@ class Toolbar extends React.Component<IToolbarProps, State> {
         {!this.state.isOpened ? (
           <div className="toolbar__title" id="title">
             <h3 className="title__label">{this.props.name}</h3>
-            {this.props.hasStatus && <Label active={false} />}
+            {this.props.hasStatus && <Label active={this.props.statusActive!} />}
             {this.props.mode === 'search' && (
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <IconButton
@@ -46,7 +48,9 @@ class Toolbar extends React.Component<IToolbarProps, State> {
                 <Button label="Role Matrix" icon={true} size="medium" />
               </div>
             )}
-            {this.props.mode === 'edit' && <IconButton icon={['fas', 'pen']} />}
+            {this.props.mode === 'edit' && (
+              <IconButton icon={['fas', 'pen']} onClick={this.props.onClick} />
+            )}
           </div>
         ) : (
           <Search onClick={this.handleOffSearch} />
