@@ -13,14 +13,27 @@ interface IFormEditProps {
 }
 
 class FormEdit extends React.Component<IFormEditProps> {
-  state = { user: this.props.user };
+  state = {
+    user: {
+      id: this.props.user.id,
+      username: this.props.user.username,
+      status: this.props.user.status,
+      url: this.props.user.url,
+      email: this.props.user.email,
+    },
+  };
 
   handleDelete(id: string) {
     removeUser(Number(id));
   }
 
+  handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const name = event.currentTarget.name;
+    this.setState({ user: { ...this.state.user, [name]: event.currentTarget.value } });
+  };
+
   render() {
-    const user = this.props.user;
+    const user = this.state.user;
     return (
       <div className="padding-m">
         <div className="align-left">
@@ -32,10 +45,22 @@ class FormEdit extends React.Component<IFormEditProps> {
           <Button size="medium" label="Save" primary={true} />
         </div>
         <div className="mg-top-m">
-          <Input name="Full name" value={user.username} type="text" />
-          <Input name="Avatar" type="file" />
+          <Input
+            label="Full name"
+            name="username"
+            value={user.username}
+            type="text"
+            onHandleChange={this.handleChange}
+          />
+          <Input
+            label="Email"
+            name="email"
+            value={user.email}
+            type="text"
+            onHandleChange={this.handleChange}
+          />
+          <Input label="Avatar" type="file" />
           <Avatar size="medium" url={user.url} username={user.username} />
-
           <div className="input-box" style={{ justifyContent: 'start' }}>
             <p className="input-box__label">Status:</p>
             <SwitchButton checked={user.status} />
