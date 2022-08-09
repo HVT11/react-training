@@ -28,31 +28,20 @@ class Modal extends React.Component<IModal, State> {
   };
 
   render() {
+    const { title, hasInput, nameBtn1, nameBtn2, onClickBtn1, onClickBtn2 } = this.props;
     return (
       this.state.isOpened && (
         <div className="modal">
           <div className="modal__overlay"></div>
           <div className="modal__body">
             <div className="modal__header">
-              <h3 className="modal__title">{this.props.title}</h3>
+              <h3 className="modal__title">{title}</h3>
               <IconButton icon={['fas', 'xmark']} onClick={this.handleClose} />
             </div>
             <div className="d-flex d-flex--space-between">
-              {this.props.hasInput && <input type="text" />}
-              {this.props.nameBtn1 && (
-                <Button
-                  label={this.props.nameBtn1}
-                  size="small"
-                  onClick={this.props.onClickBtn1}
-                />
-              )}
-              {this.props.nameBtn2 && (
-                <Button
-                  label={this.props.nameBtn2}
-                  size="small"
-                  onClick={this.props.onClickBtn2}
-                />
-              )}
+              {hasInput && <input type="text" />}
+              {nameBtn1 && <Button label={nameBtn1} size="small" onClick={onClickBtn1} />}
+              {nameBtn2 && <Button label={nameBtn2} size="small" onClick={onClickBtn2} />}
             </div>
           </div>
         </div>
