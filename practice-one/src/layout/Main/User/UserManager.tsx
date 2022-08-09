@@ -11,13 +11,27 @@ import FormView from '../../Form/FormView/FormView';
 import GridColumn from '../../Grid/GridColumn/GridColumn';
 import GridRow from '../../Grid/GridRow/GridRow';
 
-class UserManager extends React.Component {
+interface IUSerManager {
+  reRender: string;
+}
+
+type State = {
+  itemId: string;
+  data: IUserRowProps[];
+  isLoading: boolean;
+  user: IUserRowProps;
+  editOpened: boolean;
+  reRender: string;
+};
+
+class UserManager extends React.Component<IUSerManager, State> {
   state = {
     itemId: '',
     data: [] as IUserRowProps[],
     isLoading: true,
     user: {} as IUserRowProps,
     editOpened: false,
+    reRender: this.props.reRender,
   };
 
   getData = async () => {
@@ -31,8 +45,16 @@ class UserManager extends React.Component {
     this.getData();
   }
 
+  componentDidUpdate() {
+    const { reRender } = this.props;
+    if (reRender !== this.state.reRender) {
+      this.getData();
+      this.setState({ reRender: reRender });
+    }
+  }
+
   findUser = (id: string): IUserRowProps | undefined => {
-    return this.state.data.find((user) => user.id === id);
+    return this.state.data.find((user: IUserRowProps) => user.id === id);
   };
 
   searchUser = async (input: string) => {
@@ -44,7 +66,7 @@ class UserManager extends React.Component {
 
   onHandleClickRow = (event: React.MouseEvent<HTMLTableRowElement>) => {
     const id = event.currentTarget.id;
-    this.setState({ itemId: id, user: this.findUser(id) });
+    this.setState({ itemId: id, user: this.findUser(id)! });
   };
 
   onHandleClickEdit = () => {

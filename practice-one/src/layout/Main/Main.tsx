@@ -8,13 +8,16 @@ import UserManager from './User/UserManager';
 
 interface ILayoutMain {
   index?: string;
+  reRender: string;
 }
 
 class LayoutMain extends React.Component<ILayoutMain> {
   render() {
     return (
       <div className="layout-main">
-        {this.props.index === 'sidebar-item-one' && <UserManager />}
+        {this.props.index === 'sidebar-item-one' && (
+          <UserManager reRender={this.props.reRender} />
+        )}
         {this.props.index === 'sidebar-item-two' && <RoleManager />}
         {this.props.index === 'sidebar-item-three' && <RuleManager />}
       </div>

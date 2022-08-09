@@ -39,7 +39,6 @@ class Toolbar extends React.Component<IToolbarProps, State> {
   };
 
   render() {
-    console.log(this.state.value);
     return (
       <div className="toolbar">
         {!this.state.isOpened ? (
