@@ -11,14 +11,11 @@ export interface IItemProps {
 
 class Item extends React.Component<IItemProps> {
   render() {
-    const mode = this.props.highlight ? 'item--highlight' : '';
+    const { highlight, link, value } = this.props;
+    const mode = highlight ? 'item--highlight' : '';
     return (
       <li className={['item', mode].join(' ')}>
-        {this.props.link ? (
-          <a href={this.props.link}>{this.props.value}</a>
-        ) : (
-          this.props.value
-        )}
+        {link ? <a href={link}>{value}</a> : value}
       </li>
     );
   }

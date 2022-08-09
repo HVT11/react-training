@@ -22,17 +22,18 @@ export interface IListProps {
 
 class List extends React.Component<IListProps> {
   render() {
+    const { icon, headerList, count, listItem } = this.props;
     return (
       <ul className="list">
         <div className="d-flex list__header">
           <div>
-            <FontAwesomeIcon icon={this.props.icon} />
+            <FontAwesomeIcon icon={icon} />
           </div>
           <p className="list__header__label">
-            {this.props.headerList} {this.props.count && `(${this.props.count})`}
+            {headerList} {count && `(${count})`}
           </p>
         </div>
-        {this.props.listItem.map((item) => (
+        {listItem.map((item) => (
           <Item
             key={item.id}
             value={item.value}
