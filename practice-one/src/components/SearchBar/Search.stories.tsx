@@ -7,7 +7,7 @@ export default {
   component: Search,
 } as ComponentMeta<typeof Search>;
 
-const Template: ComponentStory<typeof Search> = () => <Search />;
+const Template: ComponentStory<typeof Search> = (args) => <Search {...args} />;
 
 const Default = Template.bind({});
 
