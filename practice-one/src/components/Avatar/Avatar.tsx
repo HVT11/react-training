@@ -11,20 +11,18 @@ export interface AvatarProps {
 
 class Avatar extends React.Component<Partial<AvatarProps>> {
   render() {
-    const mode = this.props.circle ? 'avatar--border-radius' : '';
-    let userName = this.props.username ? this.props.username.charAt(0).toUpperCase() : '';
+    const { circle, username, url, size } = this.props;
+    const mode = circle ? 'avatar--border-radius' : '';
+    let userName = username ? username.charAt(0).toUpperCase() : '';
     let styles: React.CSSProperties | undefined;
-    if (this.props.url) {
+    if (url) {
       styles = {
-        backgroundImage: `url(${this.props.url})`,
+        backgroundImage: `url(${url})`,
       };
       userName = '';
     }
     return (
-      <div
-        className={['avatar', `avatar--${this.props.size}`, mode].join(' ')}
-        style={styles}
-      >
+      <div className={['avatar', `avatar--${size}`, mode].join(' ')} style={styles}>
         {userName}
       </div>
     );
