@@ -2,25 +2,23 @@ import './input-search.scss';
 
 import React from 'react';
 
-type State = {
-  text: string;
-};
+interface IInputSearchProps {
+  value: string | undefined;
+  // eslint-disable-next-line no-unused-vars
+  onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
+}
 
-class InputSearch extends React.Component<{}, State> {
-  state = { text: '' };
-
-  handleChangeText = (event: React.FormEvent<HTMLInputElement>) => {
-    this.setState({ text: event.currentTarget.value });
-  };
-
+class InputSearch extends React.Component<IInputSearchProps> {
   render() {
+    const { value, onHandleChange } = this.props;
     return (
       <input
-        type="search"
+        type="text"
+        name="search"
         placeholder="Search..."
         className="input-search"
-        value={this.state.text}
-        onChange={this.handleChangeText}
+        value={value}
+        onChange={onHandleChange}
       />
     );
   }

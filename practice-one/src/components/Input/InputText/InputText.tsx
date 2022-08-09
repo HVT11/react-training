@@ -13,15 +13,16 @@ interface IInputProps {
 
 class Input extends React.Component<IInputProps> {
   render() {
+    const { label, name, value, type, onHandleChange } = this.props;
     return (
       <div className="input-box">
-        <p className="input-box__label">{this.props.label}:</p>
+        <p className="input-box__label">{label}:</p>
         <input
-          type={this.props.type}
+          type={type}
           className="input-box__input"
-          name={this.props.name}
-          onChange={this.props.onHandleChange}
-          value={this.props.value}
+          name={name}
+          onChange={onHandleChange}
+          value={value}
         />
       </div>
     );
