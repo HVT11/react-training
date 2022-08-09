@@ -35,6 +35,13 @@ class UserManager extends React.Component {
     return this.state.data.find((user) => user.id === id);
   };
 
+  searchUser = async (input: string) => {
+    const dataSearch = dataFormat((await server.fetchUsers())!).filter(
+      (user: IUserRowProps) => user.username.search(input) >= 0,
+    );
+    this.setState({ data: dataSearch });
+  };
+
   onHandleClickRow = (event: React.MouseEvent<HTMLTableRowElement>) => {
     const id = event.currentTarget.id;
     this.setState({ itemId: id, user: this.findUser(id) });
@@ -50,7 +57,7 @@ class UserManager extends React.Component {
     return (
       <GridRow>
         <GridColumn size={size}>
-          <Toolbar mode="search" name="Users" />
+          <Toolbar mode="search" name="Users" onHandleSearch={this.searchUser} />
           <TableUser
             list={this.state.data}
             isLoading={this.state.isLoading}
@@ -79,7 +86,7 @@ class UserManager extends React.Component {
                 }}
               />
             ) : (
-              <FormEdit user={user} />
+              <FormEdit user={user} dataOnChange={this.getData} />
             )}
           </GridColumn>
         )}

@@ -1,4 +1,4 @@
-import './layout-main.scss';
+import './layoutMain.scss';
 
 import React from 'react';
 

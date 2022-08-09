@@ -5,7 +5,7 @@ import React from 'react';
 import IconButton from '../Button/IconButton/IconButton';
 import Button from '../Button/NormalButton/Button';
 import Label from '../Label/Label';
-import Search from '../Search/Search';
+import Search from '../SearchBar/Search';
 
 interface IToolbarProps {
   mode?: 'search' | 'edit';
@@ -13,26 +13,33 @@ interface IToolbarProps {
   statusActive?: boolean;
   name: string;
   onClick?: () => void;
+  onHandleSearch?: any;
 }
 
 type State = {
   isOpened: boolean;
+  value: string | undefined;
 };
 
 class Toolbar extends React.Component<IToolbarProps, State> {
-  state = { isOpened: false };
+  state = { isOpened: false, value: '' };
 
   handleOnSearch = () => {
     this.setState({ isOpened: true });
-    console.log('Click on');
   };
 
   handleOffSearch = () => {
     this.setState({ isOpened: false });
-    console.log('Click off');
+  };
+
+  handleChangeSearch = (event: React.FormEvent<HTMLInputElement>) => {
+    const input = event.currentTarget.value;
+    this.setState({ value: input });
+    this.props.onHandleSearch(input);
   };
 
   render() {
+    console.log(this.state.value);
     return (
       <div className="toolbar">
         {!this.state.isOpened ? (
@@ -53,7 +60,11 @@ class Toolbar extends React.Component<IToolbarProps, State> {
             )}
           </div>
         ) : (
-          <Search onClick={this.handleOffSearch} />
+          <Search
+            onClick={this.handleOffSearch}
+            inputValue={this.state.value}
+            onHandleChange={this.handleChangeSearch}
+          />
         )}
       </div>
     );

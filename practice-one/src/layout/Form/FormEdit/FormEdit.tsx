@@ -6,13 +6,25 @@ import SwitchButton from '../../../components/Button/SwitchButton/SwitchButton';
 import Input from '../../../components/Input/InputText/InputText';
 import Label from '../../../components/Label/Label';
 import { IUserRowProps } from '../../../components/Table/TableUser/TableUserRow';
-import { removeUser } from '../../../utils/servers/users';
+import { IUser } from '../../../utils/interface/IUser';
+import { removeUser, updateUser } from '../../../utils/servers/users';
 
 interface IFormEditProps {
   user: IUserRowProps;
+  dataOnChange: () => void;
 }
 
-class FormEdit extends React.Component<IFormEditProps> {
+type State = {
+  user: {
+    id?: string;
+    username: string;
+    status: boolean;
+    url?: string;
+    email?: string;
+  };
+};
+
+class FormEdit extends React.Component<IFormEditProps, State> {
   state = {
     user: {
       id: this.props.user.id,
@@ -23,48 +35,81 @@ class FormEdit extends React.Component<IFormEditProps> {
     },
   };
 
-  handleDelete(id: string) {
-    removeUser(Number(id));
+  static getDerivedStateFromProps(props: IFormEditProps, state: State) {
+    const { id, username, status, url, email } = props.user;
+    if (props.user.id !== state.user.id) {
+      return {
+        user: {
+          id: id,
+          username: username,
+          status: status,
+          url: url,
+          email: email,
+        },
+      };
+    } else return null;
   }
 
-  handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+  handleDelete = async (id: string) => {
+    await removeUser(Number(id));
+    this.props.dataOnChange();
+  };
+
+  handleSave = async () => {
+    const { id, username, email, status, url } = this.state.user;
+    const payload: IUser = {
+      id: Number(id),
+      name: username,
+      email: email ? email : '',
+      status: status ? 1 : 0,
+      avatar: url ? url : '',
+    };
+    await updateUser(Number(id), payload);
+    this.props.dataOnChange();
+  };
+
+  handleChangeInput = (event: React.FormEvent<HTMLInputElement>) => {
     const name = event.currentTarget.name;
     this.setState({ user: { ...this.state.user, [name]: event.currentTarget.value } });
   };
 
+  handleChangeCheckbox = (event: React.FormEvent<HTMLInputElement>) => {
+    this.setState({ user: { ...this.state.user, status: event.currentTarget.checked } });
+  };
+
   render() {
-    const user = this.state.user;
+    const { id, username, email, status, url } = this.state.user;
     return (
       <div className="padding-m">
         <div className="align-left">
           <Button
             size="medium"
             label="Delete"
-            onClick={() => this.handleDelete(user.id ? user.id : '')}
+            onClick={() => this.handleDelete(id ? id : '')}
           />
-          <Button size="medium" label="Save" primary={true} />
+          <Button size="medium" label="Save" primary={true} onClick={this.handleSave} />
         </div>
         <div className="mg-top-m">
           <Input
             label="Full name"
             name="username"
-            value={user.username}
+            value={username}
             type="text"
-            onHandleChange={this.handleChange}
+            onHandleChange={this.handleChangeInput}
           />
           <Input
             label="Email"
             name="email"
-            value={user.email}
+            value={email}
             type="text"
-            onHandleChange={this.handleChange}
+            onHandleChange={this.handleChangeInput}
           />
           <Input label="Avatar" type="file" />
-          <Avatar size="medium" url={user.url} username={user.username} />
+          <Avatar size="medium" url={url} username={username} />
           <div className="input-box" style={{ justifyContent: 'start' }}>
             <p className="input-box__label">Status:</p>
-            <SwitchButton checked={user.status} />
-            <Label active={user.status} />
+            <SwitchButton checked={status} onHandleChange={this.handleChangeCheckbox} />
+            <Label active={status} />
           </div>
         </div>
       </div>
