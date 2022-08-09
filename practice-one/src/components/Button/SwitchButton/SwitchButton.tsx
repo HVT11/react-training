@@ -4,35 +4,16 @@ import React from 'react';
 
 interface ISwitchButtonProps {
   checked: boolean;
+  // eslint-disable-next-line no-unused-vars
+  onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
-type State = {
-  checked: boolean;
-};
-
-class SwitchButton extends React.Component<ISwitchButtonProps, State> {
-  state = { checked: this.props.checked };
-
-  static getDerivedStateFromProps(props: ISwitchButtonProps, state: State) {
-    if (props.checked !== state.checked) {
-      return {
-        checked: props.checked,
-      };
-    } else return null;
-  }
-
-  handleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ checked: event.target.checked });
-  };
-
+class SwitchButton extends React.Component<ISwitchButtonProps> {
   render() {
+    const { checked, onHandleChange } = this.props;
     return (
       <label className="switch" style={{ margin: '0 20px' }}>
-        <input
-          type="checkbox"
-          checked={this.state.checked}
-          onChange={this.handleSwitch}
-        />
+        <input type="checkbox" checked={checked} onChange={onHandleChange} />
         <span className="slider round"></span>
       </label>
     );

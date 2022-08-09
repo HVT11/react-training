@@ -14,17 +14,16 @@ export interface ButtonProps {
 
 class Button extends React.Component<ButtonProps> {
   render() {
-    const mode = this.props.primary ? 'btn--primary' : '';
+    const { primary, size, label, icon, onClick } = this.props;
+    const mode = primary ? 'btn--primary' : '';
     return (
       <button
         type="button"
-        className={['btn', `btn--${this.props.size}`, mode].join(' ')}
-        onClick={this.props.onClick}
+        className={['btn', `btn--${size}`, mode].join(' ')}
+        onClick={onClick}
       >
-        {this.props.icon && (
-          <FontAwesomeIcon icon={faTableList} style={{ marginRight: '4px' }} />
-        )}
-        {this.props.label}
+        {icon && <FontAwesomeIcon icon={faTableList} style={{ marginRight: '4px' }} />}
+        {label}
       </button>
     );
   }
