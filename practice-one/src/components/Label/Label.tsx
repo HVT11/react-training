@@ -8,8 +8,9 @@ interface ILabelStatusProps {
 
 class Label extends React.Component<ILabelStatusProps> {
   render(): React.ReactNode {
-    const status = this.props.active ? 'Active' : 'Not active';
-    const mode = this.props.active ? 'label-status--active' : '';
+    const active = this.props.active;
+    const status = active ? 'Active' : 'Not active';
+    const mode = active ? 'label-status--active' : '';
     return <div className={['label-status', mode].join(' ')}>{status}</div>;
   }
 }
