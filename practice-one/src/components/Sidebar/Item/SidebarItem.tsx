@@ -18,16 +18,13 @@ interface ISidebarItemProps {
 
 class SidebarItem extends React.Component<ISidebarItemProps> {
   render() {
-    const mode = this.props.index === this.props.id ? 'sidebar__item--active' : '';
+    const { index, id, onClick, icon, label } = this.props;
+    const mode = index === id ? 'sidebar__item--active' : '';
     return (
       <div>
-        <li
-          id={this.props.id}
-          className={['sidebar__item', mode].join(' ')}
-          onClick={this.props.onClick}
-        >
-          <FontAwesomeIcon icon={this.props.icon} className="sidebar__item__icon" />
-          <p className="sidebar__item__label">{this.props.label}</p>
+        <li id={id} className={['sidebar__item', mode].join(' ')} onClick={onClick}>
+          <FontAwesomeIcon icon={icon} className="sidebar__item__icon" />
+          <p className="sidebar__item__label">{label}</p>
         </li>
       </div>
     );
