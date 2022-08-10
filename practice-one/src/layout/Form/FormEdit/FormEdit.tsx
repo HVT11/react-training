@@ -7,11 +7,12 @@ import Input from '../../../components/Input/InputText/InputText';
 import Label from '../../../components/Label/Label';
 import { IUserRowProps } from '../../../components/Table/TableUser/TableUserRow';
 import { IUser } from '../../../utils/interface/IUser';
-import { removeUser, updateUser } from '../../../utils/servers/users';
+import { removeUser, updateUser, uploadAvatar } from '../../../utils/servers/users';
 
 interface IFormEditProps {
   user: IUserRowProps;
   dataOnChange: () => void;
+  setItemId: () => void;
 }
 
 type State = {
@@ -51,8 +52,10 @@ class FormEdit extends React.Component<IFormEditProps, State> {
   }
 
   handleDelete = async (id: string) => {
+    const { setItemId, dataOnChange } = this.props;
     await removeUser(Number(id));
-    this.props.dataOnChange();
+    setItemId();
+    dataOnChange();
   };
 
   handleSave = async () => {
@@ -75,6 +78,16 @@ class FormEdit extends React.Component<IFormEditProps, State> {
 
   handleChangeCheckbox = (event: React.FormEvent<HTMLInputElement>) => {
     this.setState({ user: { ...this.state.user, status: event.currentTarget.checked } });
+  };
+
+  handleChangeFile = async (event: React.FormEvent<HTMLInputElement>) => {
+    const { user } = this.state;
+    const file = event.currentTarget.files![0];
+    const formData = new FormData();
+    formData.append('upload', file);
+    formData.append('upload_fullpath', file.name);
+    const avatar = await uploadAvatar(Number(user.id), formData);
+    this.setState({ user: { ...user, url: avatar!.value } });
   };
 
   render() {
@@ -104,7 +117,7 @@ class FormEdit extends React.Component<IFormEditProps, State> {
             type="text"
             onHandleChange={this.handleChangeInput}
           />
-          <Input label="Avatar" type="file" />
+          <Input label="Avatar" type="file" onHandleChange={this.handleChangeFile} />
           <Avatar size="medium" url={url} username={username} />
           <div className="input-box" style={{ justifyContent: 'start' }}>
             <p className="input-box__label">Status:</p>

@@ -39,11 +39,21 @@ class UserManager extends React.Component<IUSerManager, State> {
     users
       ? this.setState({ data: dataFormat(users), isLoading: false })
       : this.setState({ data: [], isLoading: false });
+    this.setUser();
   };
 
   componentDidMount() {
     this.getData();
   }
+
+  setDefault = () => {
+    this.setState({ itemId: '' });
+    this.closeFormEdit();
+  };
+
+  closeFormEdit = () => {
+    this.setState({ editOpened: false });
+  };
 
   componentDidUpdate() {
     const { reRender } = this.props;
@@ -62,6 +72,10 @@ class UserManager extends React.Component<IUSerManager, State> {
       (user: IUserRowProps) => user.username.search(input) >= 0,
     );
     this.setState({ data: dataSearch });
+  };
+
+  setUser = () => {
+    this.setState({ user: this.findUser(this.state.itemId)! });
   };
 
   onHandleClickRow = (event: React.MouseEvent<HTMLTableRowElement>) => {
@@ -92,11 +106,13 @@ class UserManager extends React.Component<IUSerManager, State> {
             <Toolbar
               mode="edit"
               name="User infomation"
-              hasStatus={true}
+              hasStatus={!this.state.editOpened}
               statusActive={user.status ? true : false}
               onClick={this.onHandleClickEdit}
+              hasCancel={this.state.editOpened}
+              onHandleCloseEdit={this.closeFormEdit}
             />
-            {!this.state.editOpened ? (
+            {!this.state.editOpened && (
               <FormView
                 username={user.username}
                 hasAvatar={true}
@@ -104,11 +120,16 @@ class UserManager extends React.Component<IUSerManager, State> {
                 email={{
                   headerList: 'Email',
                   icon: ['fas', 'envelope'],
-                  listItem: [{ id: 1, value: user.email ? user.email : 'Unknow' }],
+                  listItem: [{ id: 1, value: user.email ? user.email : 'Unknown' }],
                 }}
               />
-            ) : (
-              <FormEdit user={user} dataOnChange={this.getData} />
+            )}
+            {this.state.editOpened && (
+              <FormEdit
+                user={user}
+                dataOnChange={this.getData}
+                setItemId={this.setDefault}
+              />
             )}
           </GridColumn>
         )}

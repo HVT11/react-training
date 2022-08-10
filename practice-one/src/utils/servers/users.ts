@@ -90,8 +90,6 @@ const uploadAvatar = async (
   try {
     const res = await axios.post(`/users/${id}/avatar`, payload);
     if (res.status === STATUS_CODE.OK) {
-      console.log(res.data);
-      console.log(typeof res.data);
       return res.data;
     } else {
       alert('Error');
