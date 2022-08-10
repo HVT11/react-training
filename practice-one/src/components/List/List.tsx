@@ -1,7 +1,7 @@
 import './list.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fas, IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
@@ -12,17 +12,14 @@ library.add(fas);
 export interface IListProps {
   headerList: string;
   count?: number;
-  icon:
-    | ['fas', 'envelope']
-    | ['fas', 'user-check']
-    | ['fas', 'clipboard-check']
-    | ['fas', 'clock'];
+  icon: [IconPrefix, IconName];
   listItem: IItemProps[];
 }
 
 class List extends React.Component<IListProps> {
   render() {
     const { icon, headerList, count, listItem } = this.props;
+
     return (
       <ul className="list">
         <div className="d-flex list__header">

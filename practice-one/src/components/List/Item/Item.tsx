@@ -1,5 +1,6 @@
 import './item.scss';
 
+import clsx from 'clsx';
 import React from 'react';
 
 export interface IItemProps {
@@ -12,9 +13,9 @@ export interface IItemProps {
 class Item extends React.Component<IItemProps> {
   render() {
     const { highlight, link, value } = this.props;
-    const mode = highlight ? 'item--highlight' : '';
+
     return (
-      <li className={['item', mode].join(' ')}>
+      <li className={clsx('item', { 'item--highlight': highlight })}>
         {link ? <a href={link}>{value}</a> : value}
       </li>
     );
