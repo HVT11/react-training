@@ -8,7 +8,9 @@ interface ISidebarProps {
 
 class Sidebar extends React.Component<ISidebarProps> {
   render() {
-    return <div className="sidebar">{this.props.children}</div>;
+    const { children } = this.props;
+
+    return <div className="sidebar">{children}</div>;
   }
 }
 

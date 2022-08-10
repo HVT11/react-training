@@ -1,4 +1,4 @@
-import './sidebar-list.scss';
+import './sidebarList.scss';
 
 import React from 'react';
 
@@ -8,7 +8,9 @@ interface ISidebarListProps {
 
 class SidebarList extends React.Component<ISidebarListProps> {
   render() {
-    return <ul className="sidebar__list">{this.props.children}</ul>;
+    const { children } = this.props;
+
+    return <ul className="sidebar__list">{children}</ul>;
   }
 }
 

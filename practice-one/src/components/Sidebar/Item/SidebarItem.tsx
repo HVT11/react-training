@@ -1,8 +1,9 @@
-import './sidebar-item.scss';
+import './sidebarItem.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fas, IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import React from 'react';
 
 library.add(fas);
@@ -11,18 +12,21 @@ interface ISidebarItemProps {
   id?: string;
   index?: string;
   label: string;
-  icon: ['fas', 'user-group'] | ['fas', 'user-check'] | ['fas', 'clipboard-check'];
-  // eslint-disable-next-line no-unused-vars
+  icon: [IconPrefix, IconName];
   onClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
 }
 
 class SidebarItem extends React.Component<ISidebarItemProps> {
   render() {
     const { index, id, onClick, icon, label } = this.props;
-    const mode = index === id ? 'sidebar__item--active' : '';
+
     return (
       <div>
-        <li id={id} className={['sidebar__item', mode].join(' ')} onClick={onClick}>
+        <li
+          id={id}
+          className={clsx('sidebar__item', { 'sidebar__item--active': index === id })}
+          onClick={onClick}
+        >
           <FontAwesomeIcon icon={icon} className="sidebar__item__icon" />
           <p className="sidebar__item__label">{label}</p>
         </li>
