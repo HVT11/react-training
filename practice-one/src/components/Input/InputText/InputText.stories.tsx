@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof InputText> = (args) => <InputText {...args
 const Defaut = Template.bind({});
 Defaut.args = {
   name: 'Name',
-  text: '',
+  value: '',
 };
 
 export { Defaut };

@@ -7,13 +7,13 @@ interface IInputProps {
   name?: string;
   value?: string;
   type: 'text' | 'file';
-  // eslint-disable-next-line no-unused-vars
   onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
 class Input extends React.Component<IInputProps> {
   render() {
     const { label, name, value, type, onHandleChange } = this.props;
+
     return (
       <div className="input-box">
         <p className="input-box__label">{label}:</p>

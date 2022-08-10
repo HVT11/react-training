@@ -1,16 +1,16 @@
-import './input-search.scss';
+import './inputSearch.scss';
 
 import React from 'react';
 
 interface IInputSearchProps {
   value: string | undefined;
-  // eslint-disable-next-line no-unused-vars
   onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
 class InputSearch extends React.Component<IInputSearchProps> {
   render() {
     const { value, onHandleChange } = this.props;
+
     return (
       <input
         type="text"
