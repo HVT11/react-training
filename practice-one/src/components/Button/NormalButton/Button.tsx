@@ -2,27 +2,28 @@ import './button.scss';
 
 import { faTableList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 import React from 'react';
 
 export interface ButtonProps {
   primary?: boolean;
   size?: 'small' | 'medium' | 'large';
   label: string;
-  onClick?: () => void;
+  onHandleClick?: () => void;
   icon?: true;
 }
 
 class Button extends React.Component<ButtonProps> {
   render() {
-    const { primary, size, label, icon, onClick } = this.props;
-    const mode = primary ? 'btn--primary' : '';
+    const { primary, size, label, icon, onHandleClick } = this.props;
+
     return (
       <button
         type="button"
-        className={['btn', `btn--${size}`, mode].join(' ')}
-        onClick={onClick}
+        className={clsx('btn', `btn--${size}`, { 'btn--primary': primary })}
+        onClick={onHandleClick}
       >
-        {icon && <FontAwesomeIcon icon={faTableList} style={{ marginRight: '4px' }} />}
+        {icon && <FontAwesomeIcon icon={faTableList} className="mg-right-s" />}
         {label}
       </button>
     );

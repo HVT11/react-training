@@ -12,25 +12,25 @@ const Template: ComponentStory<typeof IconButton> = (args) => <IconButton {...ar
 const Search = Template.bind({});
 Search.args = {
   icon: ['fas', 'magnifying-glass'],
-  onClick: () => alert('Button Search'),
+  onHandleClick: () => alert('Button Search'),
 };
 
 const Edit = Template.bind({});
 Edit.args = {
   icon: ['fas', 'pen'],
-  onClick: () => alert('Button Edit'),
+  onHandleClick: () => alert('Button Edit'),
 };
 
 const Cancel = Template.bind({});
 Cancel.args = {
   icon: ['fas', 'xmark'],
-  onClick: () => alert('Button cancel'),
+  onHandleClick: () => alert('Button cancel'),
 };
 
 const Back = Template.bind({});
 Back.args = {
   icon: ['fas', 'arrow-left'],
-  onClick: () => alert('Button back'),
+  onHandleClick: () => alert('Button back'),
 };
 
 export { Back, Cancel, Edit, Search };

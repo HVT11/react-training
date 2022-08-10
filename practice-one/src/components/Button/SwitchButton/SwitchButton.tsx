@@ -1,18 +1,18 @@
-import './switch-button.scss';
+import './switchButton.scss';
 
 import React from 'react';
 
 interface ISwitchButtonProps {
   checked: boolean;
-  // eslint-disable-next-line no-unused-vars
   onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
 class SwitchButton extends React.Component<ISwitchButtonProps> {
   render() {
     const { checked, onHandleChange } = this.props;
+
     return (
-      <label className="switch" style={{ margin: '0 20px' }}>
+      <label className="switch">
         <input type="checkbox" checked={checked} onChange={onHandleChange} />
         <span className="slider round"></span>
       </label>

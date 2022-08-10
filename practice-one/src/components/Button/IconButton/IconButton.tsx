@@ -1,26 +1,23 @@
-import './icon-button.scss';
+import './iconButton.scss';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fas, IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 library.add(fas);
 
 interface IIconButtonProps {
-  icon:
-    | ['fas', 'xmark']
-    | ['fas', 'pen']
-    | ['fas', 'arrow-left']
-    | ['fas', 'magnifying-glass'];
-  onClick?: () => void;
+  icon: [IconPrefix, IconName];
+  onHandleClick?: () => void;
 }
 
 class IconButton extends React.Component<IIconButtonProps> {
   render() {
-    const { icon, onClick } = this.props;
+    const { icon, onHandleClick } = this.props;
+
     return (
-      <div className="box-icon" onClick={onClick}>
+      <div className="box-icon" onClick={onHandleClick}>
         <FontAwesomeIcon icon={icon} className="icon" />
       </div>
     );
