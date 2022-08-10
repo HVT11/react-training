@@ -6,19 +6,19 @@ import IconButton from '../Button/IconButton/IconButton';
 import InputSearch from '../Input/InputSearch/InputSearch';
 
 interface ISearch {
-  onClick?: () => void;
-  // eslint-disable-next-line no-unused-vars
-  onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
   inputValue: string | undefined;
+  onHandleClick?: () => void;
+  onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
 class Search extends React.Component<ISearch> {
   render() {
-    const { onClick, onHandleChange, inputValue } = this.props;
+    const { onHandleClick, onHandleChange, inputValue } = this.props;
+
     return (
       <div className="search" id="search">
         <InputSearch value={inputValue} onHandleChange={onHandleChange} />
-        <IconButton icon={['fas', 'xmark']} onClick={onClick} />
+        <IconButton icon={['fas', 'xmark']} onHandleClick={onHandleClick} />
       </div>
     );
   }
