@@ -11,9 +11,11 @@ interface IToolbarProps {
   mode?: 'search' | 'edit';
   hasStatus?: boolean;
   statusActive?: boolean;
+  hasCancel?: boolean;
   name: string;
   onClick?: () => void;
   onHandleSearch?: any;
+  onHandleCloseEdit?: () => void;
 }
 
 type State = {
@@ -43,6 +45,12 @@ class Toolbar extends React.Component<IToolbarProps, State> {
       <div className="toolbar">
         {!this.state.isOpened ? (
           <div className="toolbar__title" id="title">
+            {this.props.hasCancel && (
+              <IconButton
+                icon={['fas', 'arrow-left']}
+                onClick={this.props.onHandleCloseEdit}
+              />
+            )}
             <h3 className="title__label">{this.props.name}</h3>
             {this.props.hasStatus && <Label active={this.props.statusActive!} />}
             {this.props.mode === 'search' && (
