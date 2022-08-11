@@ -8,9 +8,11 @@ interface IHeaderProps {
 
 class Header extends React.Component<IHeaderProps> {
   render() {
+    const { children } = this.props;
+
     return (
       <header className="header">
-        <h1 className="header__branch">{this.props.children}</h1>
+        <h1 className="header__branch">{children}</h1>
       </header>
     );
   }
