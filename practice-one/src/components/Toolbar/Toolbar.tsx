@@ -31,7 +31,8 @@ class Toolbar extends React.Component<IToolbarProps, State> {
   };
 
   handleOffSearch = () => {
-    this.setState({ isOpened: false });
+    this.setState({ isOpened: false, value: '' });
+    this.props.onHandleSearch('');
   };
 
   handleChangeSearch = (event: React.FormEvent<HTMLInputElement>) => {
