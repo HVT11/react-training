@@ -8,7 +8,9 @@ interface IGridProps {
 
 class Grid extends React.Component<IGridProps> {
   render() {
-    return <div className="grid">{this.props.children}</div>;
+    const { children } = this.props;
+
+    return <div className="grid">{children}</div>;
   }
 }
 

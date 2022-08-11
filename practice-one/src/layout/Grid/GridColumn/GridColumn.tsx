@@ -1,4 +1,4 @@
-import './grid-column.scss';
+import './gridColumn.scss';
 
 import React from 'react';
 
@@ -9,9 +9,11 @@ interface IGridColumnProps {
 
 class GridColumn extends React.Component<IGridColumnProps> {
   render() {
+    const { size, children } = this.props;
+
     return (
-      <div className={['grid__column', `grid__column--${this.props.size}`].join(' ')}>
-        {this.props.children}
+      <div className={['grid__column', `grid__column--${size}`].join(' ')}>
+        {children}
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import './grid-row.scss';
+import './gridRow.scss';
 
 import React from 'react';
 
@@ -8,7 +8,9 @@ interface IGridRowProps {
 
 class GridRow extends React.Component<IGridRowProps> {
   render() {
-    return <div className="grid__row">{this.props.children}</div>;
+    const { children } = this.props;
+
+    return <div className="grid__row">{children}</div>;
   }
 }
 
