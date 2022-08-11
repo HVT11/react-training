@@ -10,6 +10,7 @@ import Label from '../../../components/Label/Label';
 import { IUserRowProps } from '../../../components/Table/TableUser/TableUserRow';
 import { IUser } from '../../../utils/interface/IUser';
 import { removeUser, updateUser, uploadAvatar } from '../../../utils/servers/users';
+import clsx from 'clsx';
 
 interface IFormEditProps {
   user: IUserRowProps;
@@ -41,7 +42,7 @@ class FormEdit extends React.Component<IFormEditProps, State> {
   static getDerivedStateFromProps(props: IFormEditProps, state: State) {
     const { id, username, status, url, email } = props.user;
 
-    if (id !== state.user.id) {
+    if (props.user.id !== state.user.id) {
       return {
         user: {
           id: id,
@@ -134,7 +135,7 @@ class FormEdit extends React.Component<IFormEditProps, State> {
           />
           <Input label="Avatar" type="file" onHandleChange={this.handleChangeFile} />
           <Avatar size="medium" url={url} username={username} />
-          <div className="input-box jutify-start">
+          <div className={clsx('input-box', 'justify-start')}>
             <p className="input-box__label">Status:</p>
             <SwitchButton checked={status} onHandleChange={this.handleChangeCheckbox} />
             <Label active={status} />
