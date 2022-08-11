@@ -1,4 +1,4 @@
-import './formview.scss';
+import './formView.scss';
 
 import React from 'react';
 
@@ -21,6 +21,7 @@ class FormView extends React.Component<IFormViewProps> {
   render() {
     const { rules, roles, users, hasAvatar, username, title, email, lastVisited, url } =
       this.props;
+
     return (
       <div>
         <div className="d-flex-center-col padding-l">
