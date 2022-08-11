@@ -13,7 +13,7 @@ interface IToolbarProps {
   statusActive?: boolean;
   hasCancel?: boolean;
   name: string;
-  onClick?: () => void;
+  onHandleClick?: () => void;
   onHandleSearch?: any;
   onHandleCloseEdit?: () => void;
 }
@@ -41,35 +41,49 @@ class Toolbar extends React.Component<IToolbarProps, State> {
   };
 
   render() {
+    const { isOpened, value } = this.state;
+    const {
+      name,
+      statusActive,
+      mode,
+      hasStatus,
+      hasCancel,
+      onHandleClick,
+      onHandleCloseEdit,
+      onHandleSearch,
+    } = this.props;
+
     return (
       <div className="toolbar">
-        {!this.state.isOpened ? (
+        {!isOpened ? (
           <div className="toolbar__title" id="title">
-            {this.props.hasCancel && (
-              <IconButton
-                icon={['fas', 'arrow-left']}
-                onClick={this.props.onHandleCloseEdit}
-              />
-            )}
-            <h3 className="title__label">{this.props.name}</h3>
-            {this.props.hasStatus && <Label active={this.props.statusActive!} />}
-            {this.props.mode === 'search' && (
-              <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div className="dflex">
+              {hasCancel && (
+                <IconButton
+                  icon={['fas', 'arrow-left']}
+                  onHandleClick={onHandleCloseEdit}
+                />
+              )}
+              <h3 className="title__label">{name}</h3>
+            </div>
+            {hasStatus && <Label active={statusActive!} />}
+            {mode === 'search' && (
+              <div className="dflex">
                 <IconButton
                   icon={['fas', 'magnifying-glass']}
-                  onClick={this.handleOnSearch}
+                  onHandleClick={this.handleOnSearch}
                 />
                 <Button label="Role Matrix" icon={true} size="medium" />
               </div>
             )}
-            {this.props.mode === 'edit' && (
-              <IconButton icon={['fas', 'pen']} onClick={this.props.onClick} />
+            {mode === 'edit' && !hasCancel && (
+              <IconButton icon={['fas', 'pen']} onHandleClick={onHandleClick} />
             )}
           </div>
         ) : (
           <Search
-            onClick={this.handleOffSearch}
-            inputValue={this.state.value}
+            onHandleClick={this.handleOffSearch}
+            inputValue={value}
             onHandleChange={this.handleChangeSearch}
           />
         )}
