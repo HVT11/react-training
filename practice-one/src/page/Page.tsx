@@ -48,6 +48,8 @@ class Page extends React.Component<IPageProps> {
   };
 
   render() {
+    const { index, value, stateModal, reRender } = this.state;
+
     return (
       <Fragment>
         <Header>Users Manager</Header>
@@ -59,26 +61,26 @@ class Page extends React.Component<IPageProps> {
                   label="+ New"
                   primary={true}
                   size="large"
-                  onClick={this.openModal}
+                  onHandleClick={this.openModal}
                 />
                 <SidebarList>
                   <SidebarItem
                     id="sidebar-item-one"
-                    index={this.state.index}
+                    index={index}
                     label="Users"
                     icon={['fas', 'user-group']}
                     onClick={this.handleClick}
                   />
                   <SidebarItem
                     id="sidebar-item-two"
-                    index={this.state.index}
+                    index={index}
                     label="Roles"
                     icon={['fas', 'clipboard-check']}
                     onClick={this.handleClick}
                   />
                   <SidebarItem
                     id="sidebar-item-three"
-                    index={this.state.index}
+                    index={index}
                     label="Rules"
                     icon={['fas', 'user-check']}
                     onClick={this.handleClick}
@@ -87,18 +89,18 @@ class Page extends React.Component<IPageProps> {
               </Sidebar>
             </GridColumn>
             <GridColumn size="l">
-              <LayoutMain index={this.state.index} reRender={this.state.reRender} />
+              <LayoutMain index={index} reRender={reRender} />
             </GridColumn>
           </GridRow>
         </Grid>
         <Modal
-          stateModal={this.state.stateModal}
+          stateModal={stateModal}
           title="Enter username"
-          nameBtn1="Save"
-          onClickBtn1={() => this.addUser(this.state.value)}
-          value={this.state.value}
+          nameBtnPrimary="Save"
+          onClickBtnPrimary={() => this.addUser(value)}
+          value={value}
           onHandleChange={this.handleChangeText}
-          handleCloseModal={this.closeModal}
+          onhandleCloseModal={this.closeModal}
           hasInput={true}
         />
       </Fragment>
