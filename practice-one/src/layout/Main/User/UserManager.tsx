@@ -5,7 +5,7 @@ import { IUserRowProps } from '../../../components/Table/TableUser/TableUserRow'
 import Toolbar from '../../../components/Toolbar/Toolbar';
 import { dataFormat } from '../../../utils/format/dataFormat';
 import { IUser } from '../../../utils/interface/IUser';
-import * as server from '../../../utils/servers/users';
+import { fetchUsers } from '../../../utils/servers/users';
 import FormEdit from '../../Form/FormEdit/FormEdit';
 import FormView from '../../Form/FormView/FormView';
 import GridColumn from '../../Grid/GridColumn/GridColumn';
@@ -35,7 +35,7 @@ class UserManager extends React.Component<IUSerManager, State> {
   };
 
   getData = async () => {
-    const users: IUser[] | undefined = await server.fetchUsers();
+    const users: IUser[] | undefined = await fetchUsers();
     users
       ? this.setState({ data: dataFormat(users), isLoading: false })
       : this.setState({ data: [], isLoading: false });
@@ -44,6 +44,14 @@ class UserManager extends React.Component<IUSerManager, State> {
 
   componentDidMount() {
     this.getData();
+  }
+
+  componentDidUpdate() {
+    const { reRender } = this.props;
+    if (reRender !== this.state.reRender) {
+      this.getData();
+      this.setState({ reRender: reRender });
+    }
   }
 
   setDefault = () => {
@@ -55,20 +63,12 @@ class UserManager extends React.Component<IUSerManager, State> {
     this.setState({ editOpened: false });
   };
 
-  componentDidUpdate() {
-    const { reRender } = this.props;
-    if (reRender !== this.state.reRender) {
-      this.getData();
-      this.setState({ reRender: reRender });
-    }
-  }
-
   findUser = (id: string): IUserRowProps | undefined => {
     return this.state.data.find((user: IUserRowProps) => user.id === id);
   };
 
   searchUser = async (input: string) => {
-    const dataSearch = dataFormat((await server.fetchUsers())!).filter(
+    const dataSearch = dataFormat((await fetchUsers())!).filter(
       (user: IUserRowProps) => user.username.search(input) >= 0,
     );
     this.setState({ data: dataSearch });
@@ -87,18 +87,40 @@ class UserManager extends React.Component<IUSerManager, State> {
     this.setState({ editOpened: true });
   };
 
+  renderFormView = (data: IUserRowProps) => {
+    return (
+      <FormView
+        username={data.username}
+        hasAvatar={true}
+        url={data.url}
+        email={{
+          headerList: 'Email',
+          icon: ['fas', 'envelope'],
+          listItem: [{ id: 1, value: data.email ? data.email : 'Unknown' }],
+        }}
+      />
+    );
+  };
+
+  renderFormEdit = (data: IUserRowProps) => {
+    return (
+      <FormEdit user={data} dataOnChange={this.getData} setItemId={this.setDefault} />
+    );
+  };
+
   render() {
-    const size = this.state.itemId === '' ? 'xl' : 'm';
-    const user = this.state.user;
+    const { data, isLoading, itemId, editOpened, user } = this.state;
+    const size = itemId === '' ? 'xl' : 'm';
+
     return (
       <GridRow>
         <GridColumn size={size}>
           <Toolbar mode="search" name="Users" onHandleSearch={this.searchUser} />
           <TableUser
-            list={this.state.data}
-            isLoading={this.state.isLoading}
-            onClick={this.onHandleClickRow}
-            itemActive={this.state.itemId}
+            list={data}
+            isLoading={isLoading}
+            onClickRow={this.onHandleClickRow}
+            itemActive={itemId}
           />
         </GridColumn>
         {size === 'm' && (
@@ -106,31 +128,13 @@ class UserManager extends React.Component<IUSerManager, State> {
             <Toolbar
               mode="edit"
               name="User infomation"
-              hasStatus={!this.state.editOpened}
+              hasStatus={!editOpened}
               statusActive={user.status ? true : false}
-              onClick={this.onHandleClickEdit}
-              hasCancel={this.state.editOpened}
+              onHandleClick={this.onHandleClickEdit}
+              hasCancel={editOpened}
               onHandleCloseEdit={this.closeFormEdit}
             />
-            {!this.state.editOpened && (
-              <FormView
-                username={user.username}
-                hasAvatar={true}
-                url={user.url}
-                email={{
-                  headerList: 'Email',
-                  icon: ['fas', 'envelope'],
-                  listItem: [{ id: 1, value: user.email ? user.email : 'Unknown' }],
-                }}
-              />
-            )}
-            {this.state.editOpened && (
-              <FormEdit
-                user={user}
-                dataOnChange={this.getData}
-                setItemId={this.setDefault}
-              />
-            )}
+            {!editOpened ? this.renderFormView(user) : this.renderFormEdit(user)}
           </GridColumn>
         )}
       </GridRow>

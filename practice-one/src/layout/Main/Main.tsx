@@ -13,13 +13,13 @@ interface ILayoutMain {
 
 class LayoutMain extends React.Component<ILayoutMain> {
   render() {
+    const { index, reRender } = this.props;
+
     return (
       <div className="layout-main">
-        {this.props.index === 'sidebar-item-one' && (
-          <UserManager reRender={this.props.reRender} />
-        )}
-        {this.props.index === 'sidebar-item-two' && <RoleManager />}
-        {this.props.index === 'sidebar-item-three' && <RuleManager />}
+        {index === 'sidebar-item-one' && <UserManager reRender={reRender} />}
+        {index === 'sidebar-item-two' && <RoleManager />}
+        {index === 'sidebar-item-three' && <RuleManager />}
       </div>
     );
   }
