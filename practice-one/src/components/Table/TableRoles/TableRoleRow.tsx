@@ -11,12 +11,14 @@ export interface IRole {
 
 class TableRoleRow extends React.Component<IRole> {
   render() {
+    const { id, role } = this.props;
+
     return (
       <tr className="table__row">
         <td className="table__col">
-          <Avatar username={this.props.role} circle={true} size="small" />
+          <Avatar username={role} circle={true} size="small" />
         </td>
-        <td className="table__col">{this.props.role}</td>
+        <td className="table__col">{role}</td>
       </tr>
     );
   }

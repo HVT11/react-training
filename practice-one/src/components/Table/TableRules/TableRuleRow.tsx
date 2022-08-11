@@ -10,10 +10,12 @@ export interface IRule {
 
 class TableRoleRow extends React.Component<IRule> {
   render() {
+    const { name, des } = this.props;
+
     return (
       <tr className="table__row">
-        <td className="table__col">{this.props.name}</td>
-        <td className="table__col">{this.props.des}</td>
+        <td className="table__col">{name}</td>
+        <td className="table__col">{des}</td>
       </tr>
     );
   }

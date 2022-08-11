@@ -1,11 +1,12 @@
-import './table-row.scss';
+import './tableRow.scss';
 
+import clsx from 'clsx';
 import React from 'react';
 
 class TableRowLoading extends React.Component {
   render() {
     return (
-      <tr className={['table__row', 'table__row--loading'].join(' ')}>
+      <tr className={clsx('table__row', 'table__row--loading')}>
         <td>Loading...</td>
       </tr>
     );

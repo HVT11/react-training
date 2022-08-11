@@ -12,8 +12,7 @@ export interface IUserRowProps {
   status: boolean;
   email?: string;
   itemActive?: string;
-  // eslint-disable-next-line no-unused-vars
-  onClick?: (event: React.MouseEvent<HTMLTableRowElement>) => void;
+  onClickRow?: (event: React.MouseEvent<HTMLTableRowElement>) => void;
 }
 
 class TableUserRow extends React.Component<IUserRowProps> {
@@ -23,7 +22,7 @@ class TableUserRow extends React.Component<IUserRowProps> {
       <tr
         className={['table__row', mode].join(' ')}
         id={this.props.id}
-        onClick={this.props.onClick}
+        onClick={this.props.onClickRow}
       >
         <td className="table__col">
           <Avatar

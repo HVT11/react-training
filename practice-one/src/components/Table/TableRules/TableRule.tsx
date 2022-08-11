@@ -12,18 +12,20 @@ interface ITableRoleProps {
 }
 
 class TableRule extends React.Component<ITableRoleProps> {
-  render() {
-    let listRow: React.ReactNode;
-
-    if (this.props.isLoading) {
-      listRow = <TableRowLoading />;
+  renderRow = (isLoading: boolean, list: IRule[]) => {
+    if (isLoading) {
+      return <TableRowLoading />;
     } else {
-      if (this.props.list.length === 0) {
-        listRow = <TableRowEmpty />;
+      if (list.length === 0) {
+        return <TableRowEmpty />;
       } else {
-        listRow = this.props.list.map((rule) => <TableRuleRow key={rule.id} {...rule} />);
+        return list.map((rule) => <TableRuleRow key={rule.id} {...rule} />);
       }
     }
+  };
+
+  render() {
+    const { isLoading, list } = this.props;
 
     return (
       <table className="table">
@@ -33,7 +35,7 @@ class TableRule extends React.Component<ITableRoleProps> {
             <th className="table__col">Description</th>
           </tr>
         </thead>
-        <tbody className="table__body">{listRow}</tbody>
+        <tbody className="table__body">{this.renderRow(isLoading, list)}</tbody>
       </table>
     );
   }

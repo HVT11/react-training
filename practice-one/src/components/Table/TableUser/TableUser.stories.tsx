@@ -1,28 +1,28 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 import TableUser from './TableUser';
-import { IUser } from './TableUserRow';
+import { IUserRowProps } from './TableUserRow';
 
 export default {
   title: 'Table/TableUser',
   component: TableUser,
 } as ComponentMeta<typeof TableUser>;
 
-const dataUser: IUser[] = [
+const dataUser: IUserRowProps[] = [
   {
-    id: 1,
+    id: '1',
     username: 'Name',
     status: false,
     email: 'email',
   },
   {
-    id: 2,
+    id: '2',
     username: 'Name',
     status: false,
     email: 'email',
   },
 ];
-const emptyDataUser: IUser[] = [];
+const emptyDataUser: IUserRowProps[] = [];
 
 const Template: ComponentStory<typeof TableUser> = (args) => <TableUser {...args} />;
 

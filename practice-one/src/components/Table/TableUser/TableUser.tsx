@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Tab from '../../Tabs/Tab/Tab';
 import TableRowEmpty from '../TableRow/TableRowEmpty';
 import TableRowLoading from '../TableRow/TableRowLoading';
 import TableUserRow, { IUserRowProps } from './TableUserRow';
@@ -7,31 +8,37 @@ import TableUserRow, { IUserRowProps } from './TableUserRow';
 interface ITableUserProps {
   list: IUserRowProps[];
   isLoading: boolean;
-  // eslint-disable-next-line no-unused-vars
-  onClick?: (event: React.MouseEvent<HTMLTableRowElement>) => void;
+  onClickRow: (event: React.MouseEvent<HTMLTableRowElement>) => void;
   itemActive: string;
 }
 
 class TableUser extends React.Component<ITableUserProps> {
-  render() {
-    let listRow: React.ReactNode;
-
-    if (this.props.isLoading) {
-      listRow = <TableRowLoading />;
+  renderRow = (
+    isLoading: boolean,
+    list: IUserRowProps[],
+    onClickRow: (event: React.MouseEvent<HTMLTableRowElement>) => void,
+    itemActive: string,
+  ) => {
+    if (isLoading) {
+      return <TableRowLoading />;
     } else {
-      if (this.props.list.length === 0) {
-        listRow = <TableRowEmpty />;
+      if (list.length === 0) {
+        return <TableRowEmpty />;
       } else {
-        listRow = this.props.list.map((user) => (
+        return list.map((user) => (
           <TableUserRow
             key={user.id}
-            onClick={this.props.onClick}
-            itemActive={this.props.itemActive}
+            onClickRow={onClickRow}
+            itemActive={itemActive}
             {...user}
           />
         ));
       }
     }
+  };
+
+  render() {
+    const { list, isLoading, onClickRow, itemActive } = this.props;
 
     return (
       <table className="table">
@@ -43,7 +50,9 @@ class TableUser extends React.Component<ITableUserProps> {
             <th className="table__col">Email</th>
           </tr>
         </thead>
-        <tbody className="table__body">{listRow}</tbody>
+        <tbody className="table__body">
+          {this.renderRow(isLoading, list, onClickRow, itemActive)}
+        </tbody>
       </table>
     );
   }
