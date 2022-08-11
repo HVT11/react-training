@@ -1,5 +1,6 @@
 import './formEdit.scss';
 
+import clsx from 'clsx';
 import React from 'react';
 
 import Avatar from '../../../components/Avatar/Avatar';
@@ -10,7 +11,6 @@ import Label from '../../../components/Label/Label';
 import { IUserRowProps } from '../../../components/Table/TableUser/TableUserRow';
 import { IUser } from '../../../utils/interface/IUser';
 import { removeUser, updateUser, uploadAvatar } from '../../../utils/servers/users';
-import clsx from 'clsx';
 
 interface IFormEditProps {
   user: IUserRowProps;
