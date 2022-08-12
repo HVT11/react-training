@@ -6,6 +6,7 @@
 - React
 - TypeScript
 - Sass
+- Storybook
 ### How to run the project
 ##### Step one: **Clone the code folder from github to your device**
 - Choose a path to save that file -> At that path open the command window
