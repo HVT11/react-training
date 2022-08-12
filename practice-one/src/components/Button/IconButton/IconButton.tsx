@@ -9,15 +9,15 @@ library.add(fas);
 
 interface IIconButtonProps {
   icon: [IconPrefix, IconName];
-  onHandleClick?: () => void;
+  onClick?: () => void;
 }
 
 class IconButton extends React.Component<IIconButtonProps> {
   render() {
-    const { icon, onHandleClick } = this.props;
+    const { icon, onClick } = this.props;
 
     return (
-      <div className="box-icon" onClick={onHandleClick}>
+      <div className="box-icon" onClick={onClick}>
         <FontAwesomeIcon icon={icon} className="icon" />
       </div>
     );

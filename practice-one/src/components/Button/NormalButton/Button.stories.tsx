@@ -14,7 +14,7 @@ AddButton.args = {
   primary: true,
   label: '+ New',
   size: 'large',
-  onHandleClick: () => {
+  onClick: () => {
     alert('Add Button');
   },
 };
@@ -23,7 +23,7 @@ const DeleteButton = Template.bind({});
 DeleteButton.args = {
   label: 'Delete',
   size: 'small',
-  onHandleClick: () => {
+  onClick: () => {
     alert('Delete Button');
   },
 };
@@ -33,7 +33,7 @@ SaveButton.args = {
   primary: true,
   label: 'Save',
   size: 'small',
-  onHandleClick: () => {
+  onClick: () => {
     alert('Save Button');
   },
 };
@@ -42,7 +42,7 @@ const HasIcon = Template.bind({});
 HasIcon.args = {
   label: 'Name button',
   size: 'medium',
-  onHandleClick: () => {
+  onClick: () => {
     alert('Save Button');
   },
   icon: true,

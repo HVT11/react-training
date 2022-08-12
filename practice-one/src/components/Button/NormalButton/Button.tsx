@@ -5,23 +5,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React from 'react';
 
-export interface ButtonProps {
+interface ButtonProps {
   primary?: boolean;
   size?: 'small' | 'medium' | 'large';
   label: string;
-  onHandleClick?: () => void;
+  onClick?: () => void;
   icon?: true;
 }
 
 class Button extends React.Component<ButtonProps> {
   render() {
-    const { primary, size, label, icon, onHandleClick } = this.props;
+    const { primary, size, label, icon, onClick } = this.props;
 
     return (
       <button
         type="button"
         className={clsx('btn', `btn--${size}`, { 'btn--primary': primary })}
-        onClick={onHandleClick}
+        onClick={onClick}
       >
         {icon && <FontAwesomeIcon icon={faTableList} className="mg-right-s" />}
         {label}

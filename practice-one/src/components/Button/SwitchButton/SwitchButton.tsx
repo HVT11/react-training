@@ -4,16 +4,20 @@ import React from 'react';
 
 interface ISwitchButtonProps {
   checked: boolean;
-  onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
 class SwitchButton extends React.Component<ISwitchButtonProps> {
   render() {
-    const { checked, onHandleChange } = this.props;
+    const { checked, onChange } = this.props;
 
     return (
       <label className="switch">
-        <input type="checkbox" checked={checked} onChange={onHandleChange} />
+        <input 
+          type="checkbox" 
+          checked={checked} 
+          onChange={onChange} 
+        />
         <span className="slider round"></span>
       </label>
     );
