@@ -1,4 +1,4 @@
-import './inputText.scss';
+import './input.scss';
 
 import React from 'react';
 
@@ -7,12 +7,12 @@ interface IInputProps {
   name?: string;
   value?: string;
   type: 'text' | 'file';
-  onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
 class Input extends React.Component<IInputProps> {
   render() {
-    const { label, name, value, type, onHandleChange } = this.props;
+    const { label, name, value, type, onChange } = this.props;
 
     return (
       <div className="input-box">
@@ -21,7 +21,7 @@ class Input extends React.Component<IInputProps> {
           type={type}
           className="input-box__input"
           name={name}
-          onChange={onHandleChange}
+          onChange={onChange}
           value={value}
         />
       </div>

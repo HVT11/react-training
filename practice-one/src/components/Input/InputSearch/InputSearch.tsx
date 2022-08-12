@@ -4,12 +4,12 @@ import React from 'react';
 
 interface IInputSearchProps {
   value: string | undefined;
-  onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
 class InputSearch extends React.Component<IInputSearchProps> {
   render() {
-    const { value, onHandleChange } = this.props;
+    const { value, onChange } = this.props;
 
     return (
       <input
@@ -18,7 +18,7 @@ class InputSearch extends React.Component<IInputSearchProps> {
         placeholder="Search..."
         className="input-search"
         value={value}
-        onChange={onHandleChange}
+        onChange={onChange}
       />
     );
   }

@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import InputText from './InputText';
+import InputText from './Input';
 
 export default {
   title: 'Input/InputText',
