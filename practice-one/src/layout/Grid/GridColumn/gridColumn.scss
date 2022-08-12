@@ -3,6 +3,7 @@
 .grid__column {
     height: 100%;
     border: 1px solid $border-color;
+    background-color: $white-color;
     &--xs {
         width: 11%;
     }
