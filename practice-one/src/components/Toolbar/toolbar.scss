@@ -6,6 +6,7 @@
     height: 50px;
     background-color: $white-color;
     padding: 0 10px 0 10px;
+    border-bottom: 1px solid $border-color;
     &__title{
         @include flex-center-vert;
         justify-content: space-between;
