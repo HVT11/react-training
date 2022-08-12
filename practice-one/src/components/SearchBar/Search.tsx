@@ -7,18 +7,18 @@ import InputSearch from '../Input/InputSearch/InputSearch';
 
 interface ISearch {
   inputValue: string | undefined;
-  onHandleClick?: () => void;
-  onHandleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
+  onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
 class Search extends React.Component<ISearch> {
   render() {
-    const { onHandleClick, onHandleChange, inputValue } = this.props;
+    const { onClick, onChange, inputValue } = this.props;
 
     return (
       <div className="search" id="search">
-        <InputSearch value={inputValue} onHandleChange={onHandleChange} />
-        <IconButton icon={['fas', 'xmark']} onHandleClick={onHandleClick} />
+        <InputSearch value={inputValue} onChange={onChange} />
+        <IconButton icon={['fas', 'xmark']} onClick={onClick} />
       </div>
     );
   }
