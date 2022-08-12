@@ -18,8 +18,9 @@ interface IUSerManager {
 type State = {
   itemId: string;
   data: IUserRowProps[];
+  dataOriginal: IUserRowProps[];
   isLoading: boolean;
-  user: IUserRowProps;
+  item: IUserRowProps;
   editOpened: boolean;
   reRender: string;
 };
@@ -28,20 +29,14 @@ class UserManager extends React.Component<IUSerManager, State> {
   state = {
     itemId: '',
     data: [] as IUserRowProps[],
+    dataOriginal: [] as IUserRowProps[],
     isLoading: true,
-    user: {} as IUserRowProps,
+    item: {} as IUserRowProps,
     editOpened: false,
     reRender: this.props.reRender,
   };
 
-  getData = async () => {
-    const users: IUser[] | undefined = await fetchUsers();
-    users
-      ? this.setState({ data: dataFormat(users), isLoading: false })
-      : this.setState({ data: [], isLoading: false });
-    this.setUser();
-  };
-
+  //Life Cycle
   componentDidMount() {
     this.getData();
   }
@@ -59,44 +54,52 @@ class UserManager extends React.Component<IUSerManager, State> {
     this.closeFormEdit();
   };
 
-  closeFormEdit = () => {
-    this.setState({ editOpened: false });
+  getData = async () => {
+    const users: IUser[] | undefined = await fetchUsers();
+    users
+      ? this.setState({ data: dataFormat(users), isLoading: false, dataOriginal: dataFormat(users) })
+      : this.setState({ data: [], isLoading: false });
+    this.setUser();
   };
 
   findUser = (id: string): IUserRowProps | undefined => {
-    return this.state.data.find((user: IUserRowProps) => user.id === id);
+    return this.state.data.find((item: IUserRowProps) => item.user.id === id);
   };
 
   searchUser = async (input: string) => {
-    const dataSearch = dataFormat((await fetchUsers())!).filter(
-      (user: IUserRowProps) => user.username.search(input) >= 0,
-    );
+    const { dataOriginal } = this.state;
+    const dataSearch = dataOriginal.filter((item: IUserRowProps) => item.user.username.search(input) >= 0);
     this.setState({ data: dataSearch });
   };
 
   setUser = () => {
-    this.setState({ user: this.findUser(this.state.itemId)! });
+    this.setState({ item: this.findUser(this.state.itemId)!});
   };
 
-  onHandleClickRow = (event: React.MouseEvent<HTMLTableRowElement>) => {
+  onClickRow = (event: React.MouseEvent<HTMLTableRowElement>) => {
     const id = event.currentTarget.id;
-    this.setState({ itemId: id, user: this.findUser(id)! });
+    this.setState({ itemId: id, item: this.findUser(id)! });
   };
 
-  onHandleClickEdit = () => {
+  onClickEdit = () => {
     this.setState({ editOpened: true });
   };
 
+  closeFormEdit = () => {
+    this.setState({ editOpened: false });
+  };
+
   renderFormView = (data: IUserRowProps) => {
+    const { username, url, email} = data.user;
     return (
       <FormView
-        username={data.username}
+        username={username}
         hasAvatar={true}
-        url={data.url}
+        url={url}
         email={{
           headerList: 'Email',
           icon: ['fas', 'envelope'],
-          listItem: [{ id: 1, value: data.email ? data.email : 'Unknown' }],
+          listItem: [{ id: 1, value: email ? email : 'Unknown' }],
         }}
       />
     );
@@ -104,22 +107,30 @@ class UserManager extends React.Component<IUSerManager, State> {
 
   renderFormEdit = (data: IUserRowProps) => {
     return (
-      <FormEdit user={data} dataOnChange={this.getData} setItemId={this.setDefault} />
+      <FormEdit
+        user={data.user}
+        dataOnChange={this.getData}
+        setItemId={this.setDefault}
+      />
     );
   };
 
   render() {
-    const { data, isLoading, itemId, editOpened, user } = this.state;
+    const { data, isLoading, itemId, editOpened, item } = this.state;
     const size = itemId === '' ? 'xl' : 'm';
 
     return (
       <GridRow>
         <GridColumn size={size}>
-          <Toolbar mode="search" name="Users" onHandleSearch={this.searchUser} />
+          <Toolbar
+            mode="search"
+            name="Users"
+            handleSearch={this.searchUser}
+          />
           <TableUser
             list={data}
             isLoading={isLoading}
-            onClickRow={this.onHandleClickRow}
+            onClickRow={this.onClickRow}
             itemActive={itemId}
           />
         </GridColumn>
@@ -129,12 +140,12 @@ class UserManager extends React.Component<IUSerManager, State> {
               mode="edit"
               name="User infomation"
               hasStatus={!editOpened}
-              statusActive={user.status ? true : false}
-              onHandleClick={this.onHandleClickEdit}
+              statusActive={item.user.status ? true : false}
+              onClick={this.onClickEdit}
               hasCancel={editOpened}
-              onHandleCloseEdit={this.closeFormEdit}
+              handleCloseEdit={this.closeFormEdit}            
             />
-            {!editOpened ? this.renderFormView(user) : this.renderFormEdit(user)}
+            {!editOpened ? this.renderFormView(item) : this.renderFormEdit(item)}
           </GridColumn>
         )}
       </GridRow>
