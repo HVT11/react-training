@@ -19,8 +19,17 @@ interface IFormViewProps {
 
 class FormView extends React.Component<IFormViewProps> {
   render() {
-    const { rules, roles, users, hasAvatar, username, title, email, lastVisited, url } =
-      this.props;
+    const { 
+      rules, 
+      roles, 
+      users, 
+      hasAvatar, 
+      username, 
+      title, 
+      email, 
+      lastVisited, 
+      url 
+    } = this.props;
 
     return (
       <div>

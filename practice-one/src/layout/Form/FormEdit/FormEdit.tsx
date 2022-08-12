@@ -6,14 +6,14 @@ import React from 'react';
 import Avatar from '../../../components/Avatar/Avatar';
 import Button from '../../../components/Button/NormalButton/Button';
 import SwitchButton from '../../../components/Button/SwitchButton/SwitchButton';
-import Input from '../../../components/Input/InputText/InputText';
+import Input from '../../../components/Input/InputBasic/Input';
 import Label from '../../../components/Label/Label';
 import { IUserRowProps } from '../../../components/Table/TableUser/TableUserRow';
 import { IUser } from '../../../utils/interface/IUser';
 import { removeUser, updateUser, uploadAvatar } from '../../../utils/servers/users';
 
 interface IFormEditProps {
-  user: IUserRowProps;
+  user: IUserRowProps['user'];
   dataOnChange: () => void;
   setItemId: () => void;
 }
@@ -29,29 +29,11 @@ type State = {
 };
 
 class FormEdit extends React.Component<IFormEditProps, State> {
-  state = {
-    user: {
-      id: this.props.user.id,
-      username: this.props.user.username,
-      status: this.props.user.status,
-      url: this.props.user.url,
-      email: this.props.user.email,
-    },
-  };
+  state = { user: this.props.user };
 
   static getDerivedStateFromProps(props: IFormEditProps, state: State) {
-    const { id, username, status, url, email } = props.user;
-
     if (props.user.id !== state.user.id) {
-      return {
-        user: {
-          id: id,
-          username: username,
-          status: status,
-          url: url,
-          email: email,
-        },
-      };
+      return { user: props.user };
     } else return null;
   }
 
@@ -107,15 +89,15 @@ class FormEdit extends React.Component<IFormEditProps, State> {
       <div className="padding-m">
         <div className="align-left">
           <Button
-            size="medium"
+            size="small"
             label="Delete"
-            onHandleClick={() => this.handleDelete(id ? id : '')}
+            onClick={() => this.handleDelete(id ? id : '')}
           />
           <Button
-            size="medium"
+            size="small"
             label="Save"
             primary={true}
-            onHandleClick={this.handleSave}
+            onClick={this.handleSave}
           />
         </div>
         <div className="mg-top-m">
@@ -124,20 +106,20 @@ class FormEdit extends React.Component<IFormEditProps, State> {
             name="username"
             value={username}
             type="text"
-            onHandleChange={this.handleChangeInput}
+            onChange={this.handleChangeInput}
           />
           <Input
             label="Email"
             name="email"
             value={email}
             type="text"
-            onHandleChange={this.handleChangeInput}
+            onChange={this.handleChangeInput}
           />
-          <Input label="Avatar" type="file" onHandleChange={this.handleChangeFile} />
+          <Input label="Avatar" type="file" onChange={this.handleChangeFile} />
           <Avatar size="medium" url={url} username={username} />
           <div className={clsx('input-box', 'justify-start')}>
             <p className="input-box__label">Status:</p>
-            <SwitchButton checked={status} onHandleChange={this.handleChangeCheckbox} />
+            <SwitchButton checked={status} onChange={this.handleChangeCheckbox} />
             <Label active={status} />
           </div>
         </div>
