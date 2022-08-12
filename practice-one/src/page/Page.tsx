@@ -61,7 +61,7 @@ class Page extends React.Component<IPageProps> {
                   label="+ New"
                   primary={true}
                   size="large"
-                  onHandleClick={this.openModal}
+                  onClick={this.openModal}
                 />
                 <SidebarList>
                   <SidebarItem
@@ -99,8 +99,8 @@ class Page extends React.Component<IPageProps> {
           nameBtnPrimary="Save"
           onClickBtnPrimary={() => this.addUser(value)}
           value={value}
-          onHandleChange={this.handleChangeText}
-          onhandleCloseModal={this.closeModal}
+          onChange={this.handleChangeText}
+          handleCloseModal={this.closeModal}
           hasInput={true}
         />
       </Fragment>
