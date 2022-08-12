@@ -17,14 +17,14 @@ Default.args = {
 const HasButton = Template.bind({});
 HasButton.args = {
   title: 'This is title',
-  nameBtn1: 'Button 1',
-  nameBtn2: 'Button 2',
+  nameBtnPrimary: 'Button 1',
+  nameBtnSecondary: 'Button 2',
 };
 
 const HasInput = Template.bind({});
 HasInput.args = {
   title: 'This is title',
-  nameBtn1: 'Button',
+  nameBtnPrimary: 'Button',
   hasInput: true,
 };
 

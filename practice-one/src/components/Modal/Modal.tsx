@@ -14,8 +14,8 @@ interface IModal {
   nameBtnSecondary?: string;
   onClickBtnPrimary: () => void;
   onClickBtnSecondary?: () => void;
-  onhandleCloseModal: () => void;
-  onHandleChange: (event: React.FormEvent<HTMLInputElement>) => void;
+  handleCloseModal: () => void;
+  onChange: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
 class Modal extends React.Component<IModal> {
@@ -28,8 +28,8 @@ class Modal extends React.Component<IModal> {
       nameBtnSecondary,
       onClickBtnPrimary,
       onClickBtnSecondary,
-      onhandleCloseModal,
-      onHandleChange,
+      handleCloseModal,
+      onChange,
     } = this.props;
 
     return (
@@ -39,7 +39,7 @@ class Modal extends React.Component<IModal> {
           <div className="modal__body">
             <div className="modal__header">
               <h3 className="modal__title">{title}</h3>
-              <IconButton icon={['fas', 'xmark']} onHandleClick={onhandleCloseModal} />
+              <IconButton icon={['fas', 'xmark']} onClick={handleCloseModal} />
             </div>
             <div className="d-flex d-flex--space-between">
               {hasInput && (
@@ -47,21 +47,21 @@ class Modal extends React.Component<IModal> {
                   type="text"
                   className="modal__input"
                   value={value}
-                  onChange={onHandleChange}
+                  onChange={onChange}
                 />
               )}
               {nameBtnPrimary && (
                 <Button
                   label={nameBtnPrimary}
                   size="small"
-                  onHandleClick={onClickBtnPrimary}
+                  onClick={onClickBtnPrimary}
                 />
               )}
               {nameBtnSecondary && (
                 <Button
                   label={nameBtnSecondary}
                   size="small"
-                  onHandleClick={onClickBtnSecondary}
+                  onClick={onClickBtnSecondary}
                 />
               )}
             </div>
