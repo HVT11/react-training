@@ -4,7 +4,7 @@
 .table {
     display: block;
     width: 100%;
-    height: calc(100% - 60.44px);
+    height: calc(100% - 50px);
     text-align: left;
     &__head {
         display: block;
@@ -38,4 +38,8 @@
     &__col {
         width: 25%;
     }
+}
+
+.border-bot-primary {
+    border-bottom: 1px solid $primary-color;
 }

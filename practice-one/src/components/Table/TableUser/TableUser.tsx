@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Tab from '../../Tabs/Tab/Tab';
 import TableRowEmpty from '../TableRow/TableRowEmpty';
 import TableRowLoading from '../TableRow/TableRowLoading';
 import TableUserRow, { IUserRowProps } from './TableUserRow';
+
 
 interface ITableUserProps {
   list: IUserRowProps[];
@@ -13,33 +13,28 @@ interface ITableUserProps {
 }
 
 class TableUser extends React.Component<ITableUserProps> {
-  renderRow = (
-    isLoading: boolean,
-    list: IUserRowProps[],
-    onClickRow: (event: React.MouseEvent<HTMLTableRowElement>) => void,
-    itemActive: string,
-  ) => {
+  renderRow = ( listRow: ITableUserProps) => {
+    const { isLoading, list, itemActive, onClickRow } = listRow;
+
     if (isLoading) {
       return <TableRowLoading />;
-    } else {
-      if (list.length === 0) {
-        return <TableRowEmpty />;
-      } else {
-        return list.map((user) => (
+    }
+
+    if (list.length === 0) {
+      return <TableRowEmpty />;
+    } 
+
+    return list.map((item) => (
           <TableUserRow
-            key={user.id}
+            key={item.user.id}
+            user={item.user}
             onClickRow={onClickRow}
             itemActive={itemActive}
-            {...user}
           />
-        ));
-      }
-    }
+    ));
   };
 
   render() {
-    const { list, isLoading, onClickRow, itemActive } = this.props;
-
     return (
       <table className="table">
         <thead className="table__head">
@@ -51,7 +46,7 @@ class TableUser extends React.Component<ITableUserProps> {
           </tr>
         </thead>
         <tbody className="table__body">
-          {this.renderRow(isLoading, list, onClickRow, itemActive)}
+          {this.renderRow(this.props)}
         </tbody>
       </table>
     );

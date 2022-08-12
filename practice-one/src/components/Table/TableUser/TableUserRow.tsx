@@ -4,39 +4,44 @@ import React from 'react';
 
 import Avatar from '../../Avatar/Avatar';
 import Label from '../../Label/Label';
+import clsx from 'clsx';
 
 export interface IUserRowProps {
-  id?: string;
-  url?: string;
-  username: string;
-  status: boolean;
-  email?: string;
+  user: {
+    id?: string;
+    url?: string;
+    username: string;
+    status: boolean;
+    email?: string;
+  }
   itemActive?: string;
   onClickRow?: (event: React.MouseEvent<HTMLTableRowElement>) => void;
 }
 
 class TableUserRow extends React.Component<IUserRowProps> {
   render() {
-    const mode = this.props.itemActive === this.props.id ? 'table__row--active' : '';
+    const { itemActive, onClickRow } = this.props;
+    const { id, username, status, email, url } = this.props.user;
+
     return (
       <tr
-        className={['table__row', mode].join(' ')}
-        id={this.props.id}
-        onClick={this.props.onClickRow}
+        className={clsx('table__row', {'table__row--active': itemActive === id})}
+        id={id}
+        onClick={onClickRow}
       >
         <td className="table__col">
           <Avatar
-            url={this.props.url}
-            username={this.props.username}
+            url={url}
+            username={username}
             circle={true}
             size="small"
           />
         </td>
-        <td className="table__col">{this.props.username}</td>
+        <td className="table__col">{username}</td>
         <td className="table__col">
-          <Label active={this.props.status} />
+          <Label active={status} />
         </td>
-        <td className="table__col">{this.props.email}</td>
+        <td className="table__col">{email}</td>
       </tr>
     );
   }

@@ -12,21 +12,21 @@ interface ITableRoleProps {
 }
 
 class TableRole extends React.Component<ITableRoleProps> {
-  renderRow = (isLoading: boolean, list: IRole[]) => {
+  renderRow = (listRow: ITableRoleProps) => {
+    const { isLoading, list } = listRow;
+    
     if (isLoading) {
       return <TableRowLoading />;
-    } else {
-      if (list.length === 0) {
-        return <TableRowEmpty />;
-      } else {
-        return list.map((role) => <TableRoleRow key={role.id} {...role} />);
-      }
+    } 
+    
+    if (list.length === 0) {
+      return <TableRowEmpty />;
     }
+
+    return list.map((role) => <TableRoleRow key={role.id} {...role} />);
   };
 
   render() {
-    const { isLoading, list } = this.props;
-
     return (
       <table className="table">
         <thead className="table__head">
@@ -35,7 +35,7 @@ class TableRole extends React.Component<ITableRoleProps> {
             <th className="table__col">Name</th>
           </tr>
         </thead>
-        <tbody className="table__body">{this.renderRow(isLoading, list)}</tbody>
+        <tbody className="table__body">{this.renderRow(this.props)}</tbody>
       </table>
     );
   }
