@@ -10,16 +10,20 @@ export default {
 
 const dataUser: IUserRowProps[] = [
   {
-    id: '1',
-    username: 'Name',
-    status: false,
-    email: 'email',
+    user: {
+      id: '1',
+      username: 'Name',
+      status: false,
+      email: 'email',
+    }
   },
   {
-    id: '2',
-    username: 'Name',
-    status: false,
-    email: 'email',
+    user: {
+      id: '2',
+      username: 'Name',
+      status: false,
+      email: 'email',
+    } 
   },
 ];
 const emptyDataUser: IUserRowProps[] = [];

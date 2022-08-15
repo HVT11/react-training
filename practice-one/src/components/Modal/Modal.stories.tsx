@@ -11,11 +11,13 @@ const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
 
 const Default = Template.bind({});
 Default.args = {
+  stateModal: true,
   title: 'This is title',
 };
 
 const HasButton = Template.bind({});
 HasButton.args = {
+  stateModal: true,
   title: 'This is title',
   nameBtnPrimary: 'Button 1',
   nameBtnSecondary: 'Button 2',
@@ -23,6 +25,7 @@ HasButton.args = {
 
 const HasInput = Template.bind({});
 HasInput.args = {
+  stateModal: true,
   title: 'This is title',
   nameBtnPrimary: 'Button',
   hasInput: true,

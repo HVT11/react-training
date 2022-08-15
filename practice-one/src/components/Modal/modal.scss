@@ -11,9 +11,6 @@
     left: 0;
     display: flex;
     animation: fadeIn linear 0.1s;
-    &--active {
-        visibility: visible;
-    }
     &__overlay {
         position: absolute;
         width: 100%;
