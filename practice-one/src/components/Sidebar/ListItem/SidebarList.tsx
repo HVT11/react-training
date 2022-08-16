@@ -2,11 +2,11 @@ import './sidebarList.scss';
 
 import React from 'react';
 
-interface ISidebarListProps {
+interface IProps {
   children?: React.ReactNode;
 }
 
-class SidebarList extends React.Component<ISidebarListProps> {
+class SidebarList extends React.Component<IProps> {
   render() {
     const { children } = this.props;
 

@@ -2,13 +2,13 @@ import '../table.scss';
 
 import React from 'react';
 
-export interface IRule {
+export interface IRuleProps {
   id: number;
   name: string;
   des: string;
 }
 
-class TableRoleRow extends React.Component<IRule> {
+class TableRoleRow extends React.Component<IRuleProps> {
   render() {
     const { name, des } = this.props;
 

@@ -9,16 +9,16 @@ import SwitchButton from '../../../components/Button/SwitchButton/SwitchButton';
 import Input from '../../../components/Input/InputBasic/Input';
 import Label from '../../../components/Label/Label';
 import { IUserRowProps } from '../../../components/Table/TableUser/TableUserRow';
-import { IUser } from '../../../utils/interface/IUser';
-import { removeUser, updateUser, uploadAvatar } from '../../../utils/servers/users';
+import { IUser } from '../../../interface/IUser';
+import { removeUser, updateUser, uploadAvatar } from '../../../services/services';
 
-interface IFormEditProps {
+interface IProps {
   user: IUserRowProps['user'];
   dataOnChange: () => void;
   setItemId: () => void;
 }
 
-type State = {
+interface IState {
   user: {
     id?: string;
     username: string;
@@ -28,10 +28,10 @@ type State = {
   };
 };
 
-class FormEdit extends React.Component<IFormEditProps, State> {
+class FormEdit extends React.Component<IProps, IState> {
   state = { user: this.props.user };
 
-  static getDerivedStateFromProps(props: IFormEditProps, state: State) {
+  static getDerivedStateFromProps(props: IProps, state: IState) {
     if (props.user.id !== state.user.id) {
       return { user: props.user };
     } else return null;

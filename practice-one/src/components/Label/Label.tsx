@@ -3,11 +3,11 @@ import './label.scss';
 import clsx from 'clsx';
 import React from 'react';
 
-interface ILabelStatusProps {
+interface IProps {
   active: boolean;
 }
 
-class Label extends React.Component<ILabelStatusProps> {
+class Label extends React.Component<IProps> {
   render() {
     const { active } = this.props;
 

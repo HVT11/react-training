@@ -3,14 +3,14 @@ import './avatar.scss';
 import clsx from 'clsx';
 import React from 'react';
 
-export interface AvatarProps {
-  url: string | null;
+interface IProps {
+  url?: string | null;
   username: string;
   circle?: boolean;
   size?: 'small' | 'medium' | 'large';
 }
 
-class Avatar extends React.Component<Partial<AvatarProps>> {
+class Avatar extends React.Component<IProps> {
   render() {
     const { circle, username, url, size } = this.props;
 

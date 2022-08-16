@@ -2,12 +2,12 @@ import './switchButton.scss';
 
 import React from 'react';
 
-interface ISwitchButtonProps {
+interface IProps {
   checked: boolean;
   onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
-class SwitchButton extends React.Component<ISwitchButtonProps> {
+class SwitchButton extends React.Component<IProps> {
   render() {
     const { checked, onChange } = this.props;
 

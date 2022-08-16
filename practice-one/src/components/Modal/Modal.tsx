@@ -5,7 +5,7 @@ import React from 'react';
 import IconButton from '../Button/IconButton/IconButton';
 import Button from '../Button/NormalButton/Button';
 
-interface IModal {
+interface IProps {
   stateModal: boolean;
   title: string;
   hasInput?: boolean;
@@ -18,7 +18,7 @@ interface IModal {
   onChange: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
-class Modal extends React.Component<IModal> {
+class Modal extends React.Component<IProps> {
   render() {
     const {
       title,

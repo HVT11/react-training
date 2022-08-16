@@ -8,7 +8,7 @@ import React from 'react';
 
 library.add(fas);
 
-interface ISidebarItemProps {
+interface IProps {
   id?: string;
   index?: string;
   label: string;
@@ -16,7 +16,7 @@ interface ISidebarItemProps {
   onClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
 }
 
-class SidebarItem extends React.Component<ISidebarItemProps> {
+class SidebarItem extends React.Component<IProps> {
   render() {
     const { index, id, onClick, icon, label } = this.props;
 

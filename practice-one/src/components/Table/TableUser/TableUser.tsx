@@ -5,15 +5,15 @@ import TableRowLoading from '../TableRow/TableRowLoading';
 import TableUserRow, { IUserRowProps } from './TableUserRow';
 
 
-interface ITableUserProps {
+interface IProps {
   list: IUserRowProps[];
   isLoading: boolean;
   onClickRow: (event: React.MouseEvent<HTMLTableRowElement>) => void;
   itemActive: string;
 }
 
-class TableUser extends React.Component<ITableUserProps> {
-  renderRow = ( listRow: ITableUserProps) => {
+class TableUser extends React.Component<IProps> {
+  renderRow = ( listRow: IProps) => {
     const { isLoading, list, itemActive, onClickRow } = listRow;
 
     if (isLoading) {

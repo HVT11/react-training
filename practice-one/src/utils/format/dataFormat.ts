@@ -1,4 +1,4 @@
-import { IUser } from '../interface/IUser';
+import { IUser } from '../../interface/IUser';
 
 export const dataFormat = (data: IUser[]) => {
   return data.map((user) => (

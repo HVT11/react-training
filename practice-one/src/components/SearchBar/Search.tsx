@@ -5,13 +5,13 @@ import React from 'react';
 import IconButton from '../Button/IconButton/IconButton';
 import InputSearch from '../Input/InputSearch/InputSearch';
 
-interface ISearch {
+interface IProps {
   inputValue: string | undefined;
   onClick?: () => void;
   onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
-class Search extends React.Component<ISearch> {
+class Search extends React.Component<IProps> {
   render() {
     const { onClick, onChange, inputValue } = this.props;
 

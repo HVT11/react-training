@@ -8,15 +8,15 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import Grid from '../layout/Grid/Grid';
 import GridColumn from '../layout/Grid/GridColumn/GridColumn';
 import GridRow from '../layout/Grid/GridRow/GridRow';
-import Header from '../layout/Header/Header';
+import Header from '../components/Header/Header';
 import LayoutMain from '../layout/Main/Main';
-import { createUser } from '../utils/servers/users';
+import { createUser } from '../services/services';
 
-interface IPageProps {
+interface IProps {
   children?: React.ReactNode;
 }
 
-class Page extends React.Component<IPageProps> {
+class Page extends React.Component<IProps> {
   state = { index: 'sidebar-item-one', value: '', stateModal: false, reRender: '' };
 
   handleClick = (event: React.MouseEvent<HTMLLIElement>) => {
