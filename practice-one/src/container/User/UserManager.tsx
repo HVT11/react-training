@@ -43,6 +43,7 @@ class UserManager extends React.Component<IProps, IState> {
 
   componentDidUpdate() {
     const { reRender } = this.props;
+
     if (reRender !== this.state.reRender) {
       this.getData();
       this.setState({ reRender: reRender });
@@ -56,9 +57,14 @@ class UserManager extends React.Component<IProps, IState> {
 
   getData = async () => {
     const users: IUser[] | null = await fetchUsers();
-    users
-      ? this.setState({ data: dataFormat(users), isLoading: false, dataOriginal: dataFormat(users) })
-      : this.setState({ data: [], isLoading: false });
+
+    if(!users){
+      this.setState({ isLoading: false });
+    }
+    else {
+      this.setState({ data: dataFormat(users), isLoading: false, dataOriginal: dataFormat(users) });
+    }
+
     this.setUser();
   };
 
@@ -68,7 +74,9 @@ class UserManager extends React.Component<IProps, IState> {
 
   searchUser = async (input: string) => {
     const { dataOriginal } = this.state;
+
     const dataSearch = dataOriginal.filter((item: IUserRowProps) => item.user.username.search(input) >= 0);
+
     this.setState({ data: dataSearch });
   };
 
@@ -90,7 +98,8 @@ class UserManager extends React.Component<IProps, IState> {
   };
 
   renderFormView = (data: IUserRowProps) => {
-    const { username, url, email} = data.user;
+    const { username, url, email } = data.user;
+    
     return (
       <FormView
         username={username}
