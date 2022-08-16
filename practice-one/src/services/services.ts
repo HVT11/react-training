@@ -71,7 +71,7 @@ const removeUser = async (id: number): Promise<Pick<IUser, 'id'>> => {
  */
 const updateUser = async (
   id: string | number,
-  payload: object,
+  payload: IUser,
 ): Promise<Pick<IUser, 'id'>> => {
   try {
     const res = await axios.put(`/users/${id}`, payload);
@@ -89,12 +89,12 @@ const updateUser = async (
 
 /**
  * @param {(string | number)} id
- * @param {Object} payload
+ * @param {FormData} payload {upload: file, upload_fullpath: file.name}
  * @returns {Promise}
  */
 const uploadAvatar = async (
   id: string | number,
-  payload: object,
+  payload: FormData,
 ): Promise<IFileImage | null> => {
   try {
     const res = await axios.post(`/users/${id}/avatar`, payload);
