@@ -42,8 +42,11 @@ class Page extends React.Component<IProps> {
       status: 0,
       avatar: '',
     };
+
     await createUser(payload);
+
     this.setState({ reRender: username });
+    
     this.closeModal();
   };
 
