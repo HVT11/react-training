@@ -7,12 +7,12 @@ import React from 'react';
 
 library.add(fas);
 
-interface IIconButtonProps {
+interface IProps {
   icon: [IconPrefix, IconName];
   onClick?: () => void;
 }
 
-class IconButton extends React.Component<IIconButtonProps> {
+class IconButton extends React.Component<IProps> {
   render() {
     const { icon, onClick } = this.props;
 

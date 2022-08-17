@@ -2,7 +2,7 @@ import './input.scss';
 
 import React from 'react';
 
-interface IInputProps {
+interface IProps {
   label: string;
   name?: string;
   value?: string;
@@ -10,7 +10,7 @@ interface IInputProps {
   onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
-class Input extends React.Component<IInputProps> {
+class Input extends React.Component<IProps> {
   render() {
     const { label, name, value, type, onChange } = this.props;
 

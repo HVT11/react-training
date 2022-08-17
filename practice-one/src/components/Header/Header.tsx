@@ -2,11 +2,11 @@ import './header.scss';
 
 import React from 'react';
 
-interface IHeaderProps {
+interface IProps {
   children?: React.ReactNode;
 }
 
-class Header extends React.Component<IHeaderProps> {
+class Header extends React.Component<IProps> {
   render() {
     const { children } = this.props;
 

@@ -2,11 +2,11 @@ import './sidebar.scss';
 
 import React from 'react';
 
-interface ISidebarProps {
+interface IProps {
   children?: React.ReactNode;
 }
 
-class Sidebar extends React.Component<ISidebarProps> {
+class Sidebar extends React.Component<IProps> {
   render() {
     const { children } = this.props;
 

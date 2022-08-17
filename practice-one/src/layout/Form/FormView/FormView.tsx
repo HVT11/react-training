@@ -5,7 +5,7 @@ import React from 'react';
 import Avatar from '../../../components/Avatar/Avatar';
 import List, { IListProps } from '../../../components/List/List';
 
-interface IFormViewProps {
+interface IProps {
   username: string;
   url?: string;
   hasAvatar?: boolean;
@@ -17,7 +17,7 @@ interface IFormViewProps {
   rules?: IListProps;
 }
 
-class FormView extends React.Component<IFormViewProps> {
+class FormView extends React.Component<IProps> {
   render() {
     const { 
       rules, 

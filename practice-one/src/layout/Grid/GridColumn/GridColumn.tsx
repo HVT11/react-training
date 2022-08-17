@@ -2,12 +2,12 @@ import './gridColumn.scss';
 
 import React from 'react';
 
-interface IGridColumnProps {
+interface IProps {
   size: 'xs' | 's' | 'm' | 'l' | 'xl';
   children?: React.ReactNode | React.ReactNode[];
 }
 
-class GridColumn extends React.Component<IGridColumnProps> {
+class GridColumn extends React.Component<IProps> {
   render() {
     const { size, children } = this.props;
 

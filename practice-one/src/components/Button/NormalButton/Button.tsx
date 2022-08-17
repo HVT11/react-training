@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
 import React from 'react';
 
-interface ButtonProps {
+interface IProps {
   primary?: boolean;
   size?: 'small' | 'medium' | 'large';
   label: string;
@@ -13,7 +13,7 @@ interface ButtonProps {
   icon?: true;
 }
 
-class Button extends React.Component<ButtonProps> {
+class Button extends React.Component<IProps> {
   render() {
     const { primary, size, label, icon, onClick } = this.props;
 

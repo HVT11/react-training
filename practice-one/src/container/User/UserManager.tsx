@@ -1,21 +1,21 @@
 import React from 'react';
 
-import TableUser from '../../../components/Table/TableUser/TableUser';
-import { IUserRowProps } from '../../../components/Table/TableUser/TableUserRow';
-import Toolbar from '../../../components/Toolbar/Toolbar';
-import { dataFormat } from '../../../utils/format/dataFormat';
-import { IUser } from '../../../utils/interface/IUser';
-import { fetchUsers } from '../../../utils/servers/users';
-import FormEdit from '../../Form/FormEdit/FormEdit';
-import FormView from '../../Form/FormView/FormView';
-import GridColumn from '../../Grid/GridColumn/GridColumn';
-import GridRow from '../../Grid/GridRow/GridRow';
+import TableUser from '../../components/Table/TableUser/TableUser';
+import { IUserRowProps } from '../../components/Table/TableUser/TableUserRow';
+import Toolbar from '../../components/Toolbar/Toolbar';
+import { dataFormat } from '../../utils/format/dataFormat';
+import { IUser } from '../../interface/IUser';
+import { fetchUsers } from '../../services/services';
+import FormEdit from '../../layout/Form/FormEdit/FormEdit';
+import FormView from '../../layout/Form/FormView/FormView';
+import GridColumn from '../../layout/Grid/GridColumn/GridColumn';
+import GridRow from '../../layout/Grid/GridRow/GridRow';
 
-interface IUSerManager {
+interface IProps {
   reRender: string;
 }
 
-type State = {
+type IState = {
   itemId: string;
   data: IUserRowProps[];
   dataOriginal: IUserRowProps[];
@@ -25,7 +25,7 @@ type State = {
   reRender: string;
 };
 
-class UserManager extends React.Component<IUSerManager, State> {
+class UserManager extends React.Component<IProps, IState> {
   state = {
     itemId: '',
     data: [] as IUserRowProps[],
@@ -43,6 +43,7 @@ class UserManager extends React.Component<IUSerManager, State> {
 
   componentDidUpdate() {
     const { reRender } = this.props;
+
     if (reRender !== this.state.reRender) {
       this.getData();
       this.setState({ reRender: reRender });
@@ -55,10 +56,15 @@ class UserManager extends React.Component<IUSerManager, State> {
   };
 
   getData = async () => {
-    const users: IUser[] | undefined = await fetchUsers();
-    users
-      ? this.setState({ data: dataFormat(users), isLoading: false, dataOriginal: dataFormat(users) })
-      : this.setState({ data: [], isLoading: false });
+    const users: IUser[] | null = await fetchUsers();
+
+    if(!users){
+      this.setState({ isLoading: false });
+    }
+    else {
+      this.setState({ data: dataFormat(users), isLoading: false, dataOriginal: dataFormat(users) });
+    }
+
     this.setUser();
   };
 
@@ -68,7 +74,9 @@ class UserManager extends React.Component<IUSerManager, State> {
 
   searchUser = async (input: string) => {
     const { dataOriginal } = this.state;
+
     const dataSearch = dataOriginal.filter((item: IUserRowProps) => item.user.username.search(input) >= 0);
+
     this.setState({ data: dataSearch });
   };
 
@@ -90,7 +98,8 @@ class UserManager extends React.Component<IUSerManager, State> {
   };
 
   renderFormView = (data: IUserRowProps) => {
-    const { username, url, email} = data.user;
+    const { username, url, email } = data.user;
+    
     return (
       <FormView
         username={username}

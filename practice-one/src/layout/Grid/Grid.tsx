@@ -2,11 +2,11 @@ import './grid.scss';
 
 import React from 'react';
 
-interface IGridProps {
+interface IProps {
   children?: React.ReactNode | React.ReactNode[];
 }
 
-class Grid extends React.Component<IGridProps> {
+class Grid extends React.Component<IProps> {
   render() {
     const { children } = this.props;
 

@@ -4,12 +4,12 @@ import React from 'react';
 
 import Avatar from '../../Avatar/Avatar';
 
-export interface IRole {
+export interface IRoleProps {
   id?: string;
   role: string;
 }
 
-class TableRoleRow extends React.Component<IRole> {
+class TableRoleRow extends React.Component<IRoleProps> {
   render() {
     const { id, role } = this.props;
 

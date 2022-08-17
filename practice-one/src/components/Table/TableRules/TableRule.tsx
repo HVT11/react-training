@@ -4,15 +4,15 @@ import React from 'react';
 
 import TableRowEmpty from '../TableRow/TableRowEmpty';
 import TableRowLoading from '../TableRow/TableRowLoading';
-import TableRuleRow, { IRule } from './TableRuleRow';
+import TableRuleRow, { IRuleProps } from './TableRuleRow';
 
-interface ITableRoleProps {
-  list: IRule[];
+interface IProps {
+  list: IRuleProps[];
   isLoading: boolean;
 }
 
-class TableRule extends React.Component<ITableRoleProps> {
-  renderRow = (listRow: ITableRoleProps) => {
+class TableRule extends React.Component<IProps> {
+  renderRow = (listRow: IProps) => {
     const { isLoading, list } = listRow;
 
     if (isLoading) {

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import GridColumn from '../../Grid/GridColumn/GridColumn';
-import GridRow from '../../Grid/GridRow/GridRow';
+import GridColumn from '../../layout/Grid/GridColumn/GridColumn';
+import GridRow from '../../layout/Grid/GridRow/GridRow';
 
 class RoleManager extends React.Component {
   render() {

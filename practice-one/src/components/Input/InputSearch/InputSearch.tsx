@@ -2,12 +2,12 @@ import './inputSearch.scss';
 
 import React from 'react';
 
-interface IInputSearchProps {
+interface IProps {
   value: string | undefined;
   onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
-class InputSearch extends React.Component<IInputSearchProps> {
+class InputSearch extends React.Component<IProps> {
   render() {
     const { value, onChange } = this.props;
 

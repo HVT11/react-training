@@ -2,9 +2,9 @@ import './layoutMain.scss';
 
 import React from 'react';
 
-import RoleManager from './Roles/Roles';
-import RuleManager from './Rules/Rules';
-import UserManager from './User/UserManager';
+import RoleManager from '../../container/Roles/Roles';
+import RuleManager from '../../container/Rules/Rules';
+import UserManager from '../../container/User/UserManager';
 
 interface ILayoutMain {
   index?: string;

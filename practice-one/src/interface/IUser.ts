@@ -1,7 +1,12 @@
+enum status {
+  true,
+  false
+}
+
 export interface IUser {
   id: number;
   name: string;
   email: string;
-  status: 1 | 0;
+  status: status.true | status.false;
   avatar: string;
 }

@@ -7,7 +7,7 @@ import Button from '../Button/NormalButton/Button';
 import Label from '../Label/Label';
 import Search from '../SearchBar/Search';
 
-interface IToolbarProps {
+interface IProps {
   mode?: 'search' | 'edit';
   hasStatus?: boolean;
   statusActive?: boolean;
@@ -18,12 +18,12 @@ interface IToolbarProps {
   handleCloseEdit?: () => void;
 }
 
-type State = {
+interface IState {
   isOpened: boolean;
   value: string | undefined;
 };
 
-class Toolbar extends React.Component<IToolbarProps, State> {
+class Toolbar extends React.Component<IProps, IState> {
   state = { isOpened: false, value: '' };
 
   handleOnSearch = () => {
