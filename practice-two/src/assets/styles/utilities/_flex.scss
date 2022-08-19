@@ -1,0 +1,15 @@
+@import '../abstracts/mixins';
+
+.d-flex {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    &--space-between {
+        justify-content: space-between;
+    }
+}
+
+.d-flex-center-col {
+    @include flex-center-vert;
+    flex-direction: column;
+}
